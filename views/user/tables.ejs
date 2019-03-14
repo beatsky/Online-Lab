@@ -1,0 +1,42 @@
+<%- include('./header')%>
+		<%- include('./nav')%>
+			<div class="main-panel">
+				<div class="content">
+					<div class="container-fluid">
+						<h4 class="page-title">预约名单</h4>
+						<div class="row">
+							<div class="col-md-12">
+								<div class="card">
+									<div class="card-header">
+										<div class="card-title">orderlist</div>
+									</div>
+									<div class="card-body">
+										<table class="table table-head-bg-info">
+											<thead>
+												<tr>
+													<th scope="col">姓名</th>
+													<th scope="col">预约时间</th>
+													<th scope="col">备注</th>
+													<th scope="col">视频流</th>
+													<th scope="col">同意预约</th>
+												</tr>
+											</thead>
+											<tbody class="tbcheck">
+											<% for(var i=0; i<orderList.length; i++) { %>
+												<tr>
+													<td><%= orderList[i].name %></td>
+													<td><%= orderList[i].time %></td>
+													<td><%= orderList[i].remark %></td>
+													<td><%= orderList[i].live %></td>
+													<td><input type="checkbox" <%= orderList[i].cur %> data-toggle="toggle" data-onstyle="success"></td>
+												</tr>
+											<% } %>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<%- include('./footer')%>

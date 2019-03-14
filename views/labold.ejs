@@ -1,0 +1,132 @@
+﻿<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="lab/mui.min.css" rel="stylesheet" type="text/css" />
+    <link href="lab/video-js.min.css" rel="stylesheet">
+    <link href="lab/style.css" rel="stylesheet" type="text/css" />
+    <script src="lab/mui.min.js"></script>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="./lab/echarts.min.js"></script>
+    <script src="https://cdn.bootcss.com/socket.io/2.0.4/socket.io.js"></script>
+    <script src="lab/video.min.js"></script>
+    <script src="lab/script.js"></script>
+  </head>
+  <body>
+	<div id="sidedrawer" class="mui--no-user-select">
+      <div id="sidedrawer-brand" class="mui--appbar-line-height">
+        <span class="mui--text-title">实验室</span>
+      </div>
+      <div class="mui-divider"></div>
+      <ul>
+	  <% if (user) { %>
+		<li><strong><a href="/users">管理</a></strong></li>
+	  <% } else {%>
+	    <li><strong><a href="/users/login">登录</a></strong></li>
+	  <% } %>
+        <li>
+          <strong>电机调速</strong>
+          <ul>
+            <li><a href="javascript:addSpeed();">加速</a></li>
+            <li><a href="javascript:reduceSpeed();">减速</a></li>
+          </ul>
+        </li>
+        <li>
+          <strong>实验数据</strong>
+          <ul>
+            <li><a href="#">Item 1</a></li>
+            <li><a href="#">Item 2</a></li>
+            <li><a href="#">Item 3</a></li>
+          </ul>
+        </li>
+        <li>
+          <strong>IP</strong>
+          <ul id="other">
+            <li><a href="javascript:showIp();">当前IP</a></li>
+            <li><a href="javascript:sendIp();">向实验WIFI发送IP</a></li>
+          </ul>
+        </li>
+	  <% if (!user) { %>
+        <li><strong><a href="/order">实验预约</a></strong></li>
+      <% } %>  
+      </ul>
+    </div>
+    <header id="header">
+      <div class="mui-appbar mui--appbar-line-height">
+        <div class="mui-container-fluid">
+          <a class="sidedrawer-toggle mui--visible-xs-inline-block mui--visible-sm-inline-block js-show-sidedrawer">☰</a>
+          <a class="sidedrawer-toggle mui--hidden-xs mui--hidden-sm js-hide-sidedrawer">☰</a>
+          <span class="mui--text-title mui--visible-xs-inline-block mui--visible-sm-inline-block"></span>
+        </div>
+      </div>
+    </header>
+    <div id="content-wrapper">
+      <div class="mui--appbar-height"></div>
+       <div class="mui-container-fluid video-wrapper">
+        <video id="my-player" class="video-js vjs-big-play-centered">
+        <!-- <source src="https://vjs.zencdn.net/v/oceans.mp4" type="video/mp4"></source> -->
+        <source src=<%= live %> type="rtmp/flv">
+		    <p class="vjs-no-js">
+		      请升级浏览器
+		      <a href="http://videojs.com/html5-video-support/" target="_blank">
+		        supports HTML5 video
+		      </a>
+		    </p>
+		  </video>
+		</div>
+      <div class="mui-container-fluid">
+        <div class="mui-panel" id="chart"></div>
+      </div>
+    </div>
+    <footer id="footer">
+      <div class="mui-container-fluid">
+        
+      </div>
+    </footer>
+    <script type="text/javascript">
+      var options = {};
+    	// var player = videojs('my-player', options, function onPlayerReady() {
+    	//   videojs.log('Your player is ready!');
+
+    	//   this.play(); data-setup='{}'
+
+    	//   this.on('ended', function() {
+    	//     videojs.log('Awww...over so soon?!');
+    	//   });
+      // });
+      
+    videojs.options.flash.swf = "/lab/video-js.swf";
+    // 初始化视频，设为全局变量
+    var myPlayer = videojs('my-player', {
+        autoplay: true,
+        controls: true,//控制条
+        poster: "https://vjs.zencdn.net/v/oceans.png",
+        techOrder: ["flash"],
+        muted: true,// 静音
+        preload: "auto",// 预加载
+        language: "zh-CN",// 初始化语言
+        dataSetup: '{}',
+        width: '600px'
+    }, function () {
+        console.log("--------------成功初始化视频--------------");
+        this.play();
+        myPlayer.one("playing", function () {         // 监听播放
+            console.log("开始播放");
+        });
+        myPlayer.one("error", function (error) {      // 监听错误
+            console.error("监听到异常，错误信息：%o",error);
+        });
+    });
+
+
+    </script>
+    <script>window.HELP_IMPROVE_VIDEOJS = false;</script>
+    <script type="text/javascript" src="./lab/db.js"></script>
+    <script type="text/javascript" src="./lab/init.js"></script>
+    <script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
+    <script type="text/javascript" src="lab/control.js"></script>
+
+  </body>
+</html>

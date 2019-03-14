@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>登录</title>
+<link href="/login/style.css" rel='stylesheet' type='text/css' />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+</head>
+<body>
+	<h1>实验平台登录</h1>
+	<div class="app-location">
+		<form method="post" action="/users/login">
+			<input type="text" id="username" name="username" value="用户名" onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = 'Username';}" >
+			<input type="password" id="password" name="password" value="Password" onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = 'Password';}" >
+			<div class="submit"><input type="submit" value="登录" id="login"></div>
+			<div class="clear"></div>
+			<!-- <div class="new">
+				<h3><a href="#">Forgot password ?</a></h3>
+				<h4><a href="#">New here ? Sign Up</a></h4>
+				<div class="clear"></div>
+			</div> -->
+		</form>
+	</div>
+	
+	<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+  <!-- <script>
+       $("#login").on('click', function () {
+            var username = $("#username").val()
+            var password = $("#password").val()
+            var data = {
+              "username": username,
+              "password": password
+            }
+            console.log(data)
+            $.ajax({
+              url: '/users/login',
+              method:'post',
+              data: data,
+              success: function (res) {
+                console.log(res)
+                alert(666)
+              },
+              error: function(err) {
+	              console.log(err)
+	              alert(555)
+              }
+            })
+        })
+  </script> -->
+</body>
+</html>
