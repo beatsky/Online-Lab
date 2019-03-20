@@ -44,6 +44,7 @@ router.get('/', async (ctx, next) => {
   }
   await ctx.render('./user/index', {
   })
+  ctx.response.redirect('/users/order');
 })
 
 // 已批准预约显示选中
@@ -73,8 +74,10 @@ router.post('/approve', async (ctx, next) => {
   let num = ctx.request.body
   if (num.off) {
     global.live = "rtmp://58.200.131.2:1935/livetv/hunantv"
+    global.limit = false
   }else{
     global.live = orderList[num.index].live
+    global.limit = true
   }
 })
 

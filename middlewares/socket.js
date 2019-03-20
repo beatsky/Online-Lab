@@ -19,7 +19,9 @@ var x = 0;
 
 // 接受实验仪器数据，处理数据，发送给前端
 server.on('connection',function (socket) {  
-
+	// if (!global.limit) {
+	// 	return
+	// }
 	
 	// 控制电机
 	io.on('connection', function (websocket) {

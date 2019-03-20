@@ -23,7 +23,7 @@ img{max-width:100%;}
 /*end reset*/
 /****-----start-body----****/
 body{
-	background: #0BE093;
+	background: #323542;
   font-family: 'Open Sans', sans-serif;
 }
 body a,form li,.submit input[type="submit"],.new h3 a,.new h4 a{
@@ -48,9 +48,9 @@ body h1 {
 .app-location{
   width:28%;
   margin:0 auto;
-    text-align: center;
-    background: #323542;
-      padding:4em;
+  text-align: center;
+  /*background: #323542;*/
+  padding:4em;
 }
 .location {
   padding: 1em 0;
