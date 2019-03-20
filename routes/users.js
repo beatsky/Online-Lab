@@ -6,12 +6,19 @@ let orderList = []
 
 // 登录
 router.get('/login', async (ctx, next) => {
-  if (ctx.session.user) {
-	  	// ctx.response.redirect('/users');
+  if (!ctx.session.user) {
+	  	// ctx.response.redirect('/users/login');
 	}
   await ctx.render('login', {
   })
 })
+
+// 未登录重定向
+// router.get('/*', async (ctx, next) => {
+//   if (!ctx.session.user) {
+// 	  	ctx.response.redirect('/users/login');
+// 	}
+// })
 
 router.post('/login', async (ctx, next) => {
 	var data = await ctx.request.body
