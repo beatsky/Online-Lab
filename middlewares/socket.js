@@ -23,16 +23,17 @@ server.on('connection',function (socket) {
 	// 	return
 	// }
 	// 控制电机
-	// io.on('connection', function (websocket) {
-	// 	console.log(555)
-	// 	websocket.on('speed', function (data) {
-	// 		socket.write(data, 'utf8');
-	// 		console.log(data)
-	// 	})
-	// });
-
-	setTimeout(function(args) {
-		socket.emit('CE03\/r\/n', 'utf8');
+	io.on('connection', function (websocket) {
+		console.log(555)
+		websocket.on('speed', function (data) {
+			socket.write(data, 'utf8');
+			console.log(data)
+		})
+	});
+	console.log(123)
+	socket.write('CE03\/r\/n', 'utf8');
+	setTimeout(function() {
+		socket.write('CE03\/r\/n', 'utf8');
 	}, 7000)
 
 	io.emit('message', '555');
