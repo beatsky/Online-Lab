@@ -23,4 +23,5 @@ function reduceSpeed() {
   sp--
   socket.emit('speed', 'CE03\/r\/n');
   // speedNum.innerHTML = sp
+  console.log('CE03\/r\/n')
 }

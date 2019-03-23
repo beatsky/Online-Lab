@@ -26,6 +26,7 @@ server.on('connection',function (socket) {
 	io.on('connection', function (websocket) {
 		websocket.on('speed', function (data) {
 			socket.write(data);
+			console.log(data)
 		})
 	});
 
@@ -34,7 +35,7 @@ server.on('connection',function (socket) {
 
 	socket.on('data',function (data) {  
 	  str = parseInt(data, 16)
-	  console.log(data)
+	  // console.log(data)
 
 
 
