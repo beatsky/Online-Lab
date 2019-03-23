@@ -8,9 +8,11 @@ function showIp() {
 function sendIp() {
   socket.emit('ip', returnCitySN.cip);
 }
-
+let sp = 0
 function addSpeed() {
-  socket.emit('speed', '+1');
+  sp++
+  socket.emit('speed', 'CE0' + sp);
+  
 }
 
 function reduceSpeed() {
