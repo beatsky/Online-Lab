@@ -25,20 +25,22 @@ server.on('connection',function (socket) {
 	// 控制电机
 	io.on('connection', function (websocket) {
 		websocket.on('speed', function (data) {
-			socket.write(data, 'utf8');
+			socket.write(data);
 		})
 	});
 
 
-	socket.setEncoding('utf8');
+	// socket.setEncoding('utf8');
 
 	socket.on('data',function (data) {  
+	  str = parseInt(data, 16)
 	  console.log(data)
+
 
 
 	  // str = parseInt(data, 16).split('4151')[0].split('4251')[0]
 	  // str = data.split('s')
-	  
+
    //    for (let i = 1; i < str.length; i++) {
    //    	dataArr.push(str[i]);
    //    	x++;

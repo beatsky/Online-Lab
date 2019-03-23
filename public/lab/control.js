@@ -13,14 +13,14 @@ function sendIp() {
 }
 let sp = 0
 function addSpeed() {
-  sp++
-  socket.emit('speed', 'CE0' + sp);
-  speedNum.innerHTML = sp
+  // sp++
+  socket.emit('speed', 'CE05');
+  // speedNum.innerHTML = sp
   
 }
 
 function reduceSpeed() {
   sp--
-  socket.emit('speed', 'CE0' + sp);
-  speedNum.innerHTML = sp
+  socket.emit('speed', 'CE03\/r\/n');
+  // speedNum.innerHTML = sp
 }
