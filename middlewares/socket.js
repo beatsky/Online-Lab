@@ -35,7 +35,7 @@ server.on('connection',function (socket) {
 
 	socket.on('data',function (data) {  
 	  str = parseInt(data, 16)
-	  // console.log(data)
+	  console.log(data)
 
 
 
