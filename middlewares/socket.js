@@ -23,20 +23,25 @@ server.on('connection',function (socket) {
 	// 	return
 	// }
 	// 控制电机
-	io.on('connection', function (websocket) {
-		websocket.on('speed', function (data) {
-			socket.write(data, 'utf8');
-			console.log(data)
-		})
-	});
+	// io.on('connection', function (websocket) {
+	// 	console.log(555)
+	// 	websocket.on('speed', function (data) {
+	// 		socket.write(data, 'utf8');
+	// 		console.log(data)
+	// 	})
+	// });
 
+	setTimeout(function(args) {
+		socket.emit('CE03\/r\/n', 'utf8');
+	}, 7000)
 
+	io.emit('message', '555');
 	// socket.setEncoding('utf8');
 
 	socket.on('data',function (data) {  
 	  str = parseInt(data, 16)
 	  console.log(data)
-
+	});
 
 
 	  // str = parseInt(data, 16).split('4151')[0].split('4251')[0]
@@ -63,7 +68,7 @@ server.on('connection',function (socket) {
 	  // 	io.emit('message', labData);
 	  // }
 	  
-	}) 
+	// }) 
 	
 	socket.on('end', function () {
 		dataArr = [];
@@ -71,5 +76,5 @@ server.on('connection',function (socket) {
 		labData = {};
 		x = 0;
 	}) 
- });
+ })
 
