@@ -24,7 +24,7 @@ server.on('connection',function (socket) {
 	// }
 	// 控制电机
 	io.on('connection', function (websocket) {
-		console.log(555)
+		console.log('控制电机')
 		websocket.on('speed', function (data) {
 			socket.write(data, 'utf8');
 			console.log(data)
@@ -36,12 +36,22 @@ server.on('connection',function (socket) {
 		socket.write('CE03\/r\/n', 'utf8');
 	}, 7000)
 
-	io.emit('message', '555');
+	// io.emit('message', '555');
 	// socket.setEncoding('utf8');
 
 	socket.on('data',function (data) {  
 	  str = parseInt(data, 16)
-	  console.log(data)
+	  // console.log(data)
+	
+
+	for (let i = 1; i < 20; i++) {
+	  	x++
+	  	
+	  }
+
+	  if (x%10==0) {
+	  	io.emit('message', '555');
+	  }
 	});
 
 
