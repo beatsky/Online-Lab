@@ -29,32 +29,36 @@ server.on('connection',function (socket) {
 		})
 	});
 
+
 	socket.setEncoding('utf8');
 
 	socket.on('data',function (data) {  
 	  console.log(data)
+
+
+	  // str = parseInt(data, 16).split('4151')[0].split('4251')[0]
+	  // str = data.split('s')
 	  
-      str = data.split('s')
-      for (let i = 1; i < str.length; i++) {
-      	dataArr.push(str[i]);
-      	x++;
-      	timeArr.push(x);
+   //    for (let i = 1; i < str.length; i++) {
+   //    	dataArr.push(str[i]);
+   //    	x++;
+   //    	timeArr.push(x);
       	
-      }
+   //    }
 	  
-	  if (dataArr.length > 39) {
-	  	for (let i = 0; i < dataArr.length-40; i++) {
-	  		dataArr.shift();
-	  		timeArr.shift();
-	  	}
+	  // if (dataArr.length > 39) {
+	  // 	for (let i = 0; i < dataArr.length-40; i++) {
+	  // 		dataArr.shift();
+	  // 		timeArr.shift();
+	  // 	}
 	  	
         
-        labData.data = dataArr;
-	  	labData.time = timeArr;
-	  } 
-	  if (x%10==0) {
-	  	io.emit('message', labData);
-	  }
+   //      labData.data = dataArr;
+	  // 	labData.time = timeArr;
+	  // } 
+	  // if (x%10==0) {
+	  // 	io.emit('message', labData);
+	  // }
 	  
 	}) 
 	
