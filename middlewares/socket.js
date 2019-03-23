@@ -22,7 +22,6 @@ server.on('connection',function (socket) {
 	// if (!global.limit) {
 	// 	return
 	// }
-	
 	// 控制电机
 	io.on('connection', function (websocket) {
 		websocket.on('speed', function (data) {
@@ -31,10 +30,11 @@ server.on('connection',function (socket) {
 	});
 
 	socket.setEncoding('utf8');
+
 	socket.on('data',function (data) {  
-	  // console.log(data)
+	  console.log(data)
+	  
       str = data.split('s')
-    //   console.log(str);
       for (let i = 1; i < str.length; i++) {
       	dataArr.push(str[i]);
       	x++;
@@ -54,8 +54,6 @@ server.on('connection',function (socket) {
 	  } 
 	  if (x%10==0) {
 	  	io.emit('message', labData);
-	  	//console.log(x);
-	  	//console.log(dataArr);
 	  }
 	  
 	}) 

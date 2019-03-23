@@ -1,3 +1,6 @@
+var speedNum = document.getElementById('speedNum');
+
+
 function showIp() {
   if ($('#other li').length>=3) {
     return;
@@ -12,9 +15,12 @@ let sp = 0
 function addSpeed() {
   sp++
   socket.emit('speed', 'CE0' + sp);
+  speedNum.innerHTML = sp
   
 }
 
 function reduceSpeed() {
-  socket.emit('speed', '-1');
+  sp--
+  socket.emit('speed', 'CE0' + sp);
+  speedNum.innerHTML = sp
 }
