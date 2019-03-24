@@ -1,6 +1,6 @@
 var speedNum = document.getElementById('speedNum');
 
-let sp = 2
+let sp = 20
 
 
 function speedCalc(sp){
@@ -21,7 +21,10 @@ function lockSmall() {
 }
 
 function addSpeed() {
-	sp = sp + 0.2
+	if(sp==50){
+		return
+	}
+	sp = sp + 1
   	socket.emit('speed', `CE${speedCalc(sp)}\/r\/n`);
 	console.log(`CE${speedCalc(sp)}\/r\/n`)
 	speedNum.innerHTML = sp
@@ -30,23 +33,23 @@ function addSpeed() {
 
 
 function reduceSpeed() {
-	if(sp==2){
+	if(sp==20){
 		return
 	}
-	sp = sp - 0.2
+	sp = sp - 1
 	socket.emit('speed', `CE${speedCalc(sp)}\/r\/n`);
 	console.log(`CE${speedCalc(sp)}\/r\/n`)
 	speedNum.innerHTML = sp
 }
 
-function savaData (){
+function saveData(){
 	socket.emit('getData', '');
 	socket.on('save', function(data){
 		var stringifyData = JSON.stringify(data);
-		console.log("stringifyData ", stringifyData);
-		var blob = new Blob(stringifyData, {type: "text/json;charset=utf-8"});
+		var blob = new Blob([stringifyData]);
 		var file = new File([blob], "filename.json", {type: "text/json;charset=utf-8"});
-		console.log("file", file);
+		console.log(blob);
+		window.URL.createObjectURL(blob);
 	})
 
 
