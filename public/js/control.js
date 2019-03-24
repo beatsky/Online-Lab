@@ -31,6 +31,10 @@ function addSpeed() {
 	// socket.emit('speed', `CE3.8\/r\/n`);
 }
 
+function close(){
+	socket.emit('speed', `CE00\/r\/n`);
+}
+
 
 function reduceSpeed() {
 	if(sp==20){
