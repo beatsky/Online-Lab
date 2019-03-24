@@ -37,19 +37,20 @@ io.on('connection', function (websocket) {
 // 接受实验仪器数据，处理数据，发送给前端
 server.on('connection',function (socket) {
 	// 控制电机
-	
-
-//	socket.setEncoding('utf8');
+	// socket.setEncoding('utf8');
 	socket.on('data',function (data) {  
 		
 	  if(command){
-	  	socket.write(data, 'utf8')
+	  	socket.write(command, '')
 	  	command = ''
 	  }
 	
-	  str = data.toString().split(' ')
+	  str = data.toJSON().data
+	  // str = ;
+	  
+	  console.log(typeof data, data.Buffer, data.innerText)
 	  for(let i = 0;i < str.length;i++){
-	  	if(str[i]=="41" && str[i+1]=="51"){
+	  	if(str[i]==65 && str[i+1]==81){
 	  		low = parseInt(str[i+2], 16)
 	  		high = parseInt(str[i+3], 16)
 	  		dataArr.push(manageData(low, high))
