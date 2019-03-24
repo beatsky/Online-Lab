@@ -15,77 +15,70 @@ var dataArr = [];
 var timeArr = [];
 var str;
 var x = 0;
+var high = 0;
+var low = 0;
+var command = '';
+
+
+function manageData(low, high) {
+	return (256*high + low-32768)/65536*16
+}
+
+io.on('connection', function (websocket) {
+	websocket.on('speed', function (data) {
+//		socket.write(data, 'utf8');
+		console.log(data)
+		command = data
+	})
+})
+
 
 
 // 接受实验仪器数据，处理数据，发送给前端
-server.on('connection',function (socket) {  
-	// if (!global.limit) {
-	// 	return
-	// }
+server.on('connection',function (socket) {
 	// 控制电机
-	io.on('connection', function (websocket) {
-		console.log('控制电机')
-		websocket.on('speed', function (data) {
-			socket.write(data, 'utf8');
-			console.log(data)
-		})
-	});
-	console.log(123)
-	socket.write('CE03\/r\/n', 'utf8');
-	setTimeout(function() {
-		socket.write('CE03\/r\/n', 'utf8');
-	}, 7000)
+	
 
-	// io.emit('message', '555');
-	// socket.setEncoding('utf8');
-
+//	socket.setEncoding('utf8');
 	socket.on('data',function (data) {  
-	  str = parseInt(data, 16)
-	  // console.log(data)
-	
-
-	for (let i = 1; i < 20; i++) {
-	  	x++
-	  	
+		
+	  if(command){
+	  	socket.write(data, 'utf8')
+	  	command = ''
 	  }
-
-	  if (x%10==0) {
-	  	io.emit('message', '555');
-	  }
-	});
-
-
-	  // str = parseInt(data, 16).split('4151')[0].split('4251')[0]
-	  // str = data.split('s')
-
-   //    for (let i = 1; i < str.length; i++) {
-   //    	dataArr.push(str[i]);
-   //    	x++;
-   //    	timeArr.push(x);
-      	
-   //    }
-	  
-	  // if (dataArr.length > 39) {
-	  // 	for (let i = 0; i < dataArr.length-40; i++) {
-	  // 		dataArr.shift();
-	  // 		timeArr.shift();
-	  // 	}
-	  	
-        
-   //      labData.data = dataArr;
-	  // 	labData.time = timeArr;
-	  // } 
-	  // if (x%10==0) {
-	  // 	io.emit('message', labData);
-	  // }
-	  
-	// }) 
 	
+	  str = data.toString().split(' ')
+	  for(let i = 0;i < str.length;i++){
+	  	if(str[i]=="41" && str[i+1]=="51"){
+	  		low = parseInt(str[i+2], 16)
+	  		high = parseInt(str[i+3], 16)
+	  		dataArr.push(manageData(low, high))
+	  		x++
+	  		timeArr.push(x);
+	  	}
+	  }
+	  
+	  if (dataArr.length >= 39) {
+	  	for (let i = 0; i < dataArr.length-40; i++) {
+	  		dataArr.shift();
+	  		timeArr.shift();
+	  	}
+	
+	    labData.data = dataArr;
+	  	labData.time = timeArr;
+	  } 
+	  if (x%10==0 && x>=40) {
+	  	io.emit('message', labData);
+//	  	console.log(labData.data.length, labData.time.length);
+//	  	console.log(labData);
+	  }
+	
+	}) 
+
 	socket.on('end', function () {
 		dataArr = [];
 		timeArr = [];
 		labData = {};
 		x = 0;
-	}) 
- })
-
+	})
+ });

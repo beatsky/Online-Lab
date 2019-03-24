@@ -4,16 +4,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="lab/video-js.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link href="lab/style.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="assets/css/ready.css">
-    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-    <script type="text/javascript" src="./lab/echarts.min.js"></script>
-    <script src="https://cdn.bootcss.com/socket.io/2.0.4/socket.io.js"></script>
-    <script src="lab/video.min.js"></script>
-    <script src="lab/script.js"></script>
-	  <link rel="stylesheet" href="assets/css/style.css">
+    <link href="css/video-js.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <link href="css/ready.min.css" rel="stylesheet">
+    <link href="css/demo.css" rel="stylesheet">
+    <script src="js/socket.io.js"></script>
+    <script src="js/video.min.js"></script>
   </head>
   <body>
       <div class="htmleaf-container">
@@ -113,15 +110,10 @@
                </div>
           </div>
             
-        
-          <!-- <footer id="footer">
-            
-          </footer> -->
       </div>
 
-    <script type="text/javascript">
+    <script>
       var options = {};
-  
       videojs.options.flash.swf = "/lab/video-js.swf";
       // 初始化视频，设为全局变量
       var myPlayer = videojs('my-player', {
@@ -148,11 +140,13 @@
 
 
     </script>
-    <script>window.HELP_IMPROVE_VIDEOJS = false;</script>
-    <script type="text/javascript" src="./lab/db.js"></script>
-    <script type="text/javascript" src="./lab/init.js"></script>
-    <script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
-    <script type="text/javascript" src="lab/control.js"></script>
-    <script type="text/javascript" src="lab/index.js"></script>
+    
+    <script src="js/jquery.3.2.1.min.js"></script>
+    <script src="js/echarts.min.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/db.js"></script>
+    <script src="js/init.js"></script>
+    <script src="js/control.js"></script>
+    <script src="js/index.js"></script>
   </body>
 </html>

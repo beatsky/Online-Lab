@@ -10,7 +10,6 @@ socket.on('message',
 		if(data.length <= 1){
 			return
 		}
-		console.log(data)
 		myChart.setOption(option = {
 			// title: {
 			// 	text: '实验波形图'
@@ -19,11 +18,7 @@ socket.on('message',
 				trigger: 'axis'
 			},
 			xAxis: {
-				// data: arr2.map(function (item) {
-				// 	return item[0];
-				// })
 				data: data.time,
-				// data: socket.on('message',function(){return data.time})
 			},
 			yAxis: {
 				splitLine: {
@@ -40,42 +35,10 @@ socket.on('message',
 					saveAsImage: {}
 				}
 			},
-			dataZoom: [{
-				startValue: data.data[0]
-			}, {
+			dataZoom: [
+			{
 				type: 'inside'
 			}],
-			// visualMap: {
-			// 	top: 10,
-			// 	right: 0,
-			// 	pieces: [{
-			// 		gt: 0,
-			// 		lte: 50,
-			// 		color: '#096'
-			// 	}, {
-			// 		gt: 50,
-			// 		lte: 100,
-			// 		color: '#ffde33'
-			// 	}, {
-			// 		gt: 100,
-			// 		lte: 150,
-			// 		color: '#ff9933'
-			// 	}, {
-			// 		gt: 150,
-			// 		lte: 200,
-			// 		color: '#cc0033'
-			// 	}, {
-			// 		gt: 200,
-			// 		lte: 300,
-			// 		color: '#660099'
-			// 	}, {
-			// 		gt: 300,
-			// 		color: '#7e0023'
-			// 	}],
-			// 	outOfRange: {
-			// 		color: '#999'
-			// 	}
-			// },
 			series: {
 				name: '实验波形图',
 				type: 'line',
@@ -108,7 +71,7 @@ myChart.setOption(option = {
 		trigger: 'axis'
 	},
 	xAxis: {
-		data: [1,2,3,4,5,6,7,8,9]
+		data: [10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50]
 	},
 	yAxis: {
 		splitLine: {
@@ -118,11 +81,6 @@ myChart.setOption(option = {
 	series: {
 		name: '实验波形图',
 		type: 'line',
-		// data: [1,200,56,89,220,185,369,14,-90]
+		data: [255, 161, 255, 161, 255, 161, 255, 161, 255, 161, 255, 161, 255, 161, 255, 161, 255, 161, 255, 161, 255, 161, 255, 161, 255, 161, 255, 161, 255, 161, 255, 161, 255, 161, 255, 161, 255, 161, 255, 161, 255]
 	}
 });
-
-
-function reduceSpeed() {
-	socket.emit('speed', '12356');
-}
