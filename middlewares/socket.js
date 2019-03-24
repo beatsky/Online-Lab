@@ -17,8 +17,12 @@ var str;
 var x = 0;
 var high = 0;
 var low = 0;
-var command = '555';
+var command = '';
 
+var sava = {
+	data: ['LiSA'],
+	time: []
+}
 
 function manageData(low, high) {
 	return (256*high + low-32768)/65536*16
@@ -28,6 +32,10 @@ io.on('connection', function (websocket) {
 	websocket.on('speed', function (data) {
 		console.log(data)
 		command = data
+	})
+
+	websocket.on('getData', function (data) {
+		io.emit('save', sava)
 	})
 })
 
@@ -49,12 +57,12 @@ server.on('connection',function (socket) {
 	  
 	  for(let i = 0;i < str.length;i++){
 	  	if(str[i]==65 && str[i+1]==81){
-	  		// low = parseInt(str[i+2], 16)
-	  		// high = parseInt(str[i+3], 16)
-	  		// console.log(manageData(low, high))
-	  		dataArr.push(manageData(str[i+2], str[i+3]))
+	  		high = manageData(str[i+2], str[i+3])
+	  		dataArr.push(high)
+	  		sava.data.push(high)
 	  		x++
 	  		timeArr.push(x);
+	  		sava.time.push(x)
 	  	}
 	  }
 	  

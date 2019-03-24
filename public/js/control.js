@@ -4,8 +4,8 @@ let sp = 2
 
 
 function speedCalc(sp){
-	if(sp%1==0){
-		return sp + '.0'
+	if(sp<10){
+		return '0' + sp
 	}else{
 		return sp
 	}
@@ -21,7 +21,7 @@ function lockSmall() {
 }
 
 function addSpeed() {
-	sp = parseFloat(sp + 0.2)
+	sp = sp + 0.2
   	socket.emit('speed', `CE${speedCalc(sp)}\/r\/n`);
 	console.log(`CE${speedCalc(sp)}\/r\/n`)
 	speedNum.innerHTML = sp
@@ -33,8 +33,22 @@ function reduceSpeed() {
 	if(sp==2){
 		return
 	}
-	sp = parseFloat(sp - 0.2)
+	sp = sp - 0.2
 	socket.emit('speed', `CE${speedCalc(sp)}\/r\/n`);
 	console.log(`CE${speedCalc(sp)}\/r\/n`)
 	speedNum.innerHTML = sp
 }
+
+function savaData (){
+	socket.emit('getData', '');
+	socket.on('save', function(data){
+		var stringifyData = JSON.stringify(data);
+		console.log("stringifyData ", stringifyData);
+		var blob = new Blob(stringifyData, {type: "text/json;charset=utf-8"});
+		var file = new File([blob], "filename.json", {type: "text/json;charset=utf-8"});
+		console.log("file", file);
+	})
+
+
+}
+

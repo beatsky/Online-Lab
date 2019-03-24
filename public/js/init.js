@@ -1,6 +1,6 @@
 ﻿var myChart = echarts.init(document.getElementById('chart'));
 var option = {};
-var socket = io.connect('http://118.25.92.237:3001');
+var socket = io.connect('http://127.0.0.1:3001');
 var chart = document.getElementById('chart');
 window.addEventListener('resize', function(){
 	myChart.resize();
