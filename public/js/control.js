@@ -21,7 +21,7 @@ function lockSmall() {
 }
 
 function addSpeed() {
-	sp = sp + 0.2
+	sp = parseFloat(sp + 0.2)
   	socket.emit('speed', `CE${speedCalc(sp)}\/r\/n`);
 	console.log(`CE${speedCalc(sp)}\/r\/n`)
 	speedNum.innerHTML = sp
@@ -33,7 +33,7 @@ function reduceSpeed() {
 	if(sp==2){
 		return
 	}
-	sp = sp - 0.2
+	sp = parseFloat(sp - 0.2)
 	socket.emit('speed', `CE${speedCalc(sp)}\/r\/n`);
 	console.log(`CE${speedCalc(sp)}\/r\/n`)
 	speedNum.innerHTML = sp
