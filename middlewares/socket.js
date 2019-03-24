@@ -25,7 +25,7 @@ var sava = {
 }
 
 function manageData(low, high) {
-	return (256*high + low-32768)/65536*16
+	return (256*high + low)/32768*16
 }
 
 io.on('connection', function (websocket) {
