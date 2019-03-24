@@ -17,20 +17,19 @@ var str;
 var x = 0;
 var high = 0;
 var low = 0;
-var command = '';
+var command = '555';
 
 
 function manageData(low, high) {
 	return (256*high + low-32768)/65536*16
 }
 
-// io.on('connection', function (websocket) {
-// 	websocket.on('speed', function (data) {
-// //		socket.write(data, 'utf8');
-// 		console.log(data)
-// 		command = data
-// 	})
-// })
+io.on('connection', function (websocket) {
+	websocket.on('speed', function (data) {
+		console.log(data)
+		command = data
+	})
+})
 
 
 
@@ -43,6 +42,7 @@ server.on('connection',function (socket) {
 	  if(command){
 	  	socket.write(command, '')
 	  	command = ''
+	  	console.log(command)
 	  }
 	
 	  str = data.toJSON().data
