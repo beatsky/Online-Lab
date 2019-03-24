@@ -56,8 +56,10 @@ server.on('connection',function (socket) {
 	  str = data.toJSON().data
 	  
 	  for(let i = 0;i < str.length;i++){
+	  	console.log(str)
 	  	if(str[i]==65 && str[i+1]==81){
 	  		high = manageData(str[i+2], str[i+3])
+	  		console.log(high)
 	  		dataArr.push(high)
 	  		sava.data.push(high)
 	  		x++

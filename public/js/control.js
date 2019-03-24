@@ -53,7 +53,11 @@ function saveData(){
 		var blob = new Blob([stringifyData]);
 		var file = new File([blob], "filename.json", {type: "text/json;charset=utf-8"});
 		console.log(blob);
-		window.URL.createObjectURL(blob);
+		console.log(window.URL.createObjectURL(blob))
+		var a1 = document.createElement('a')
+		a1.href = window.URL.createObjectURL(blob)
+		a1.innerHTML = 'saas'
+		document.body.appendChild(a1)
 	})
 
 
