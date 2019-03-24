@@ -28,6 +28,8 @@ function manageData(low, high) {
 	return (256*high + low)/32768*16
 }
 
+
+
 io.on('connection', function (websocket) {
 	websocket.on('speed', function (data) {
 		console.log(data)
@@ -52,11 +54,11 @@ server.on('connection',function (socket) {
 	  	command = ''
 	  	console.log(command)
 	  }
-	
+	  console.log(data)
 	  str = data.toJSON().data
 	  console.log(str)
 	  for(let i = 0;i < str.length;i++){
-	  	if(str[i]==65 && str[i+1]==81){
+	  	if(str[i]==65){
 	  		console.log(str[i+2], str[i+3])
 	  		high = manageData(str[i+2], str[i+3])
 	  		console.log(high)
