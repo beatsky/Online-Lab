@@ -25,7 +25,11 @@ var sava = {
 }
 
 function manageData(low, high) {
+	if((256*high + low)>=32768){
+		return -1*(65535-(256*high + low)+1)/32768*16
+	}
 	return (256*high + low)/32768*16
+
 }
 
 
