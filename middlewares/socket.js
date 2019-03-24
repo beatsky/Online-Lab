@@ -49,10 +49,10 @@ server.on('connection',function (socket) {
 	  
 	  for(let i = 0;i < str.length;i++){
 	  	if(str[i]==65 && str[i+1]==81){
-	  		low = parseInt(str[i+2], 16)
-	  		high = parseInt(str[i+3], 16)
-	  		console.log(manageData(low, high))
-	  		dataArr.push(manageData(low, high))
+	  		// low = parseInt(str[i+2], 16)
+	  		// high = parseInt(str[i+3], 16)
+	  		// console.log(manageData(low, high))
+	  		dataArr.push(manageData(str[i+2], str[i+3]))
 	  		x++
 	  		timeArr.push(x);
 	  	}
