@@ -37,6 +37,7 @@ router.get('/logout', async (ctx, next) => {
   ctx.response.redirect('/users/login');
 })
 
+
 // 后台管理路由
 router.get('/', async (ctx, next) => {
   if (!ctx.session.user) {
@@ -46,6 +47,7 @@ router.get('/', async (ctx, next) => {
   })
   ctx.response.redirect('/users/order');
 })
+
 
 // 已批准预约显示选中
 router.get('/order', async (ctx, next) => {
@@ -62,11 +64,13 @@ router.get('/order', async (ctx, next) => {
   })
 })
 
+
 // 实验预约
 router.post('/order', async (ctx, next) => {
   ctx.response.body = '预约成功';
   await orderList.push(ctx.request.body)
 })
+
 
 router.post('/approve', async (ctx, next) => {
   ctx.response.body = '已通过';

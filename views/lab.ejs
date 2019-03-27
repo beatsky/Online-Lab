@@ -4,12 +4,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="lab/video-js.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link href="lab/style.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="assets/css/ready.css">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <script src="lab/video.min.js"></script>
+    <link href="/css/video-js.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/ready.css">
+    <link rel="stylesheet" href="/css/style.css">   
+    <script src="/js/video.min.js"></script>
   </head> 
 <body>
       <div class="htmleaf-container">
@@ -24,7 +23,7 @@
                   <div class="navbar-collapse collapse ml-auto" id="navbar-mobile">
                       <ul class="navbar-nav ml-auto">
                           <li class="nav-image">
-                              <img src="assets/img/profile2.jpg" alt="">
+                              <img src="/img/profile2.jpg" alt="">
                           </li>
     
                           <li class="nav-item">
@@ -36,7 +35,7 @@
                           </li>
                           <li class="nav-item">
                             <% if (!user) { %>
-                            <a href="order" class="nav-link">实验预约</a>
+                            <a href="/order" class="nav-link">实验预约</a>
                             <% } %>  
                           </li>
                           <li class="nav-item">
@@ -59,15 +58,15 @@
                          </div>
                          <div class="card-body">
                            <video id="my-player" class="video-js vjs-big-play-centered">
-                          <!-- <source src="https://vjs.zencdn.net/v/oceans.mp4" type="video/mp4"></source> -->
-                            <source src=<%= live %> type="rtmp/flv">
-                          <p class="vjs-no-js">
-                            请升级浏览器
-                            <a href="http://videojs.com/html5-video-support/" target="_blank">
-                              supports HTML5 video
-                            </a>
-                          </p>
-                      </video>
+                              <!-- <source src="https://vjs.zencdn.net/v/oceans.mp4" type="video/mp4"></source> -->
+                                <source src=<%= live %> type="rtmp/flv">
+                              <p class="vjs-no-js">
+                                请升级浏览器
+                                <a href="http://videojs.com/html5-video-support/" target="_blank">
+                                  supports HTML5 video
+                                </a>
+                              </p>
+                          </video>
                          </div>
                        </div>
                
@@ -116,12 +115,12 @@
     <script type="text/javascript">
       var options = {};
   
-      videojs.options.flash.swf = "/lab/video-js.swf";
+      videojs.options.flash.swf = "/js/video-js.swf";
       // 初始化视频，设为全局变量
       var myPlayer = videojs('my-player', {
           autoplay: true,
           controls: true,//控制条
-          poster: "https://vjs.zencdn.net/v/oceans.png",
+          // poster: "https://vjs.zencdn.net/v/oceans.png",
           techOrder: ["flash"],
           muted: true,// 静音
           preload: "auto",// 预加载
@@ -130,26 +129,23 @@
           width: '600px',
           fluid: true
       }, function () {
-          console.log("--------------成功初始化视频--------------");
+          // console.log("--------------成功初始化视频--------------");
           this.play();
-          myPlayer.one("playing", function () {         // 监听播放
-              console.log("开始播放");
-          });
-          myPlayer.one("error", function (error) {      // 监听错误
-              console.error("监听到异常，错误信息：%o",error);
-          });
+          // myPlayer.one("playing", function () {         // 监听播放
+          //     console.log("开始播放");
+          // });
+          // myPlayer.one("error", function (error) {      // 监听错误
+          //     console.error("监听到异常，错误信息：%o",error);
+          // });
       });
     </script>
     <script>window.HELP_IMPROVE_VIDEOJS = false;</script>
-    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-    <script src="lab/script.js"></script>
-    <script src="lab/index.js"></script>
-    <script type="text/javascript" src="./lab/echarts.min.js"></script>
-    <script src="https://cdn.bootcss.com/socket.io/2.0.4/socket.io.js"></script>
-    <script type="text/javascript" src="./lab/db.js"></script>
-    <script type="text/javascript" src="./lab/init.js"></script>
-    <script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
-    <script type="text/javascript" src="lab/control.js"></script>
-
+    <script type="text/javascript" src="/js/jquery.3.2.1.min.js"></script>
+    <!-- <script type="text/javascript" src="/js/index.js"></script> -->
+    <script type="text/javascript" src="/js/db.js"></script>
+    <script type="text/javascript" src="/js/socket.io.js"></script>
+    <script type="text/javascript" src="/js/echarts.min.js"></script>
+    <script type="text/javascript" src="/js/init.js"></script>
+    <script type="text/javascript" src="/js/control.js"></script>
   </body>
 </html>
