@@ -22,7 +22,15 @@ router.get('/order', async (ctx, next) => {
   })
 })
 
+router.post('/speed', async (ctx, next) => {
+//await ctx.render('order', {
+//})
 
+	var data = ctx.request.body
+	socket.emit('speed', 'CE03\/r\/n');
+  // speedNum.innerHTML = sp
+  console.log('CE03\/r\/n')
+})
 
 module.exports = router
 

@@ -284,3 +284,9 @@ body > #overlay {
     transform: rotate(0);
   }
 }
+
+#chart {
+  width: 100%;
+  height: 200px;
+  margin: 0 auto;
+}
