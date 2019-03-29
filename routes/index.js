@@ -2,7 +2,7 @@ const router = require('koa-router')()
 
 global.live = "rtmp://58.200.131.2:1935/livetv/hunantv"
 
-router.get('/', async (ctx, next) => {
+router.get('/lab', async (ctx, next) => {
   let user
   let live = global.live
   if (!ctx.session.user) {
@@ -19,6 +19,11 @@ router.get('/', async (ctx, next) => {
 
 router.get('/order', async (ctx, next) => {
   await ctx.render('order', {
+  })
+})
+
+router.get('/', async (ctx, next) => {
+  await ctx.render('index', {
   })
 })
 
