@@ -290,3 +290,11 @@ body > #overlay {
   height: 200px;
   margin: 0 auto;
 }
+
+body {
+  background: linear-gradient(to right, #0575E6, #00F260);
+}
+
+.mb20 {
+  margin-top: 20px;
+}

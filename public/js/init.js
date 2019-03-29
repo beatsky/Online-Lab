@@ -2,8 +2,9 @@
 var option = {};
 var maxY = 0.5
 // var socket = io.connect('http://118.25.92.237:3001');
-function rangeY(y) {
-	maxY = y
+function rangeY() {
+	maxY = document.getElementById('peak').value
+	console.log(maxY)
 }
 var socket = io.connect('http://localhost:3001');
 var chart = document.getElementById('chart');
