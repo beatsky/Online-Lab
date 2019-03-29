@@ -1,59 +1,35 @@
-﻿var chart = document.getElementById('chart');
-var myChart = echarts.init(chart);
+﻿﻿var myChart = echarts.init(document.getElementById('chart'));
 var option = {};
+var maxY = 0.5
+// var socket = io.connect('http://118.25.92.237:3001');
+function rangeY(y) {
+	maxY = y
+}
 var socket = io.connect('http://localhost:3001');
+var chart = document.getElementById('chart');
 window.addEventListener('resize', function(){
 	myChart.resize();
 })
-
-
-myChart.setOption(option = {
-	title: {
-		text: '实验波形图'
-	},
-	tooltip: {
-		trigger: 'axis'
-	},
-	xAxis: {
-		data: [1,2,3,4,5,6,7,8,9]
-	},
-	yAxis: {
-		splitLine: {
-			show: false
-		}
-	},
-	series: {
-		name: '实验波形图',
-		type: 'line',
-		data: [1,200,56,89,220,185,369,14,-90]
-	}
-});
-
-
 socket.on('message', 
 	function (data) {
-		console.log(data)
 		if(data.length <= 1){
 			return
 		}
 		myChart.setOption(option = {
-			title: {
-				text: '实验波形图'
-			},
+			// title: {
+			// 	text: '实验波形图'
+			// },
 			tooltip: {
 				trigger: 'axis'
 			},
 			xAxis: {
-				// data: arr2.map(function (item) {
-				// 	return item[0];
-				// })
 				data: data.time,
-				// data: socket.on('message',function(){return data.time})
 			},
 			yAxis: {
 				splitLine: {
 					show: false
-				}
+				},
+				max: maxY
 			},
 			toolbox: {
 				left: 'center',
@@ -65,42 +41,10 @@ socket.on('message',
 					saveAsImage: {}
 				}
 			},
-			dataZoom: [{
-				startValue: data.data[0]
-			}, {
+			dataZoom: [
+			{
 				type: 'inside'
 			}],
-			visualMap: {
-				top: 10,
-				right: 0,
-				pieces: [{
-					gt: 0,
-					lte: 50,
-					color: '#096'
-				}, {
-					gt: 50,
-					lte: 100,
-					color: '#ffde33'
-				}, {
-					gt: 100,
-					lte: 150,
-					color: '#ff9933'
-				}, {
-					gt: 150,
-					lte: 200,
-					color: '#cc0033'
-				}, {
-					gt: 200,
-					lte: 300,
-					color: '#660099'
-				}, {
-					gt: 300,
-					color: '#7e0023'
-				}],
-				outOfRange: {
-					color: '#999'
-				}
-			},
 			series: {
 				name: '实验波形图',
 				type: 'line',
@@ -125,3 +69,25 @@ socket.on('message',
 
 
 
+myChart.setOption(option = {
+	// title: {
+	// 	text: '实验波形图'
+	// },
+	tooltip: {
+		trigger: 'axis'
+	},
+	xAxis: {
+		data: [10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50]
+	},
+	yAxis: {
+		splitLine: {
+			show: false
+		},
+		max: maxY
+	},
+	series: {
+		name: '实验波形图',
+		type: 'line',
+		data: [255, 161, 255, 161, 255, 161, 255, 161, 255, 161, 255, 161, 255, 161, 255, 161, 255, 161, 255, 161, 255, 161, 255, 161, 255, 161, 255, 161, 255, 161, 255, 161, 255, 161, 255, 161, 255, 161, 255, 161, 255]
+	}
+});

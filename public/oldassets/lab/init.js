@@ -10,10 +10,11 @@ socket.on('message',
 		if(data.length <= 1){
 			return
 		}
+		console.log(data)
 		myChart.setOption(option = {
-			title: {
-				text: '实验波形图'
-			},
+			// title: {
+			// 	text: '实验波形图'
+			// },
 			tooltip: {
 				trigger: 'axis'
 			},
@@ -100,9 +101,9 @@ socket.on('message',
 
 
 myChart.setOption(option = {
-	title: {
-		text: '实验波形图'
-	},
+	// title: {
+	// 	text: '实验波形图'
+	// },
 	tooltip: {
 		trigger: 'axis'
 	},
@@ -117,6 +118,11 @@ myChart.setOption(option = {
 	series: {
 		name: '实验波形图',
 		type: 'line',
-		data: [1,200,56,89,220,185,369,14,-90]
+		// data: [1,200,56,89,220,185,369,14,-90]
 	}
 });
+
+
+function reduceSpeed() {
+	socket.emit('speed', '12356');
+}

@@ -4,13 +4,21 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="/css/video-js.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/ready.css">
-    <link rel="stylesheet" href="/css/style.css">   
-    <script src="/js/video.min.js"></script>
-  </head> 
-<body>
+
+    <link href="css/video-js.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <link href="css/ready.min.css" rel="stylesheet">
+    <link href="css/demo.css" rel="stylesheet">
+    <script src="js/socket.io.js"></script>
+    <script src="js/video.min.js"></script>
+    <style type="text/css">
+      .rtmpvideo {
+        height: 250px;
+      }
+    </style>
+  </head>
+  <body>
       <div class="htmleaf-container">
           <nav class="navbar navbar-expand-md navbar-dark bg-dark navbar-offcanvas">
               <div class="container-fluid">
@@ -25,17 +33,17 @@
                           <li class="nav-image">
                               <img src="/img/profile2.jpg" alt="">
                           </li>
-    
-                          <li class="nav-item">
+                          <!-- <input class="btn btn-primary" type="button" value="Input"> -->
+                          <li class="nav-item" style="margin-bottom: 10px;">
                               <% if (user) { %>
-                              <a href="/users" class="nav-link">管理</a>
+                              <a href="/users" class="nav-link btn btn-primary btn btn-secondary">管理</a>
                               <% } else {%>
-                              <a href="/users/login">登录</a>
+                              <a href="/users/login" class="nav-link btn btn-secondary">登录</a>
                               <% } %>
                           </li>
                           <li class="nav-item">
                             <% if (!user) { %>
-                            <a href="/order" class="nav-link">实验预约</a>
+                            <a href="order" class="nav-link btn btn-secondary">实验预约</a>
                             <% } %>  
                           </li>
                           <li class="nav-item">
@@ -56,18 +64,19 @@
                          <div class="card-header">
                            <div class="card-title">实验视频</div>
                          </div>
-                         <div class="card-body">
-                           <video id="my-player" class="video-js vjs-big-play-centered">
-                              <!-- <source src="https://vjs.zencdn.net/v/oceans.mp4" type="video/mp4"></source> -->
-                                <source src=<%= live %> type="rtmp/flv">
+                         <!-- <div class="card-body"> -->
+                           <!-- <video id="my-player" class="video-js vjs-big-play-centered">
+                              <source src="rtmp://58.200.131.2:1935/livetv/hunantv" type="rtmp/flv"></source>
+                    
                               <p class="vjs-no-js">
                                 请升级浏览器
-                                <a href="http://videojs.com/html5-video-support/" target="_blank">
+                                <a href="rtmp://rtmp-w.quklive.com/live/w1551170380026773">
                                   supports HTML5 video
                                 </a>
                               </p>
-                          </video>
-                         </div>
+                            </video> -->
+                            <iframe class="card-body rtmpvideo" src="http://cloud.quklive.com/cloud/a/embed/1551170380026773"></iframe>
+                         <!-- </div> -->
                        </div>
                
                      </div>
@@ -88,16 +97,18 @@
                            <h4 class="card-title">Button Original</h4>
                            <p class="card-category">Here is a subtitle for this table</p>
                          </div> -->
-                         <div class="card-body ">
-                             <button class="btn btn-default ">电机开关</button>
-    
-                             <button class="btn btn-primary">电磁开关</button>
-                      <span class="pull-right">
-                             <button class="btn btn-info ">加速</button>
-                             <button class="btn btn-success">减速</button>
-                        <!-- <input type="text" name="" class="form-control"> -->
-                             
-                           </span>
+                         <div class="card-body row">
+                           <div class="col-md-6">
+                             <button class="btn btn-default" onclick="close()">电机开关</button>
+                             <button class="btn btn-default " onclick="lockBig()">夹紧小臂</button>
+                             <button class="btn btn-primary" onclick="lockSmall()">松开小臂</button>
+                             <button class="btn btn-default" onclick="saveData()">保存数据</button>
+                          </div>
+                          <div class="col-md-6">
+                             <button class="btn btn-info pull-right1" onclick="addSpeed()">加速</button>
+                             <a href="#" class="btn btn-primary btn-lg disabled" id="speedNum" role="button" aria-disabled="true">20</a>
+                             <button class="btn btn-success pull-right1" onclick="reduceSpeed()">减速</button>
+                          </span>
                          </div>
                        </div>
                      </div>
@@ -106,16 +117,12 @@
                </div>
           </div>
             
-        
-          <!-- <footer id="footer">
-            
-          </footer> -->
       </div>
 
-    <script type="text/javascript">
+    <script>
       var options = {};
-  
-      videojs.options.flash.swf = "/js/video-js.swf";
+      console.log(videojs)
+      videojs.options.flash.swf = "http://localhost:3000/js/video-js.swf";
       // 初始化视频，设为全局变量
       var myPlayer = videojs('my-player', {
           autoplay: true,
@@ -128,24 +135,15 @@
           dataSetup: '{}',
           width: '600px',
           fluid: true
-      }, function () {
-          // console.log("--------------成功初始化视频--------------");
-          this.play();
-          // myPlayer.one("playing", function () {         // 监听播放
-          //     console.log("开始播放");
-          // });
-          // myPlayer.one("error", function (error) {      // 监听错误
-          //     console.error("监听到异常，错误信息：%o",error);
-          // });
       });
     </script>
-    <script>window.HELP_IMPROVE_VIDEOJS = false;</script>
-    <script type="text/javascript" src="/js/jquery.3.2.1.min.js"></script>
-    <!-- <script type="text/javascript" src="/js/index.js"></script> -->
-    <script type="text/javascript" src="/js/db.js"></script>
-    <script type="text/javascript" src="/js/socket.io.js"></script>
-    <script type="text/javascript" src="/js/echarts.min.js"></script>
-    <script type="text/javascript" src="/js/init.js"></script>
-    <script type="text/javascript" src="/js/control.js"></script>
+    
+    <script src="js/jquery.3.2.1.min.js"></script>
+    <script src="js/echarts.min.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/db.js"></script>
+    <script src="js/init.js"></script>
+    <script src="js/control.js"></script>
+    <script src="js/index.js"></script>
   </body>
 </html>
