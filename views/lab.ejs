@@ -12,6 +12,11 @@
     <link href="css/demo.css" rel="stylesheet">
     <script src="js/socket.io.js"></script>
     <script src="js/video.min.js"></script>
+    <style type="text/css">
+      .rtmpvideo {
+        height: 250px;
+      }
+    </style>
   </head>
   <body>
       <div class="htmleaf-container">
@@ -59,18 +64,19 @@
                          <div class="card-header">
                            <div class="card-title">实验视频</div>
                          </div>
-                         <div class="card-body">
-                           <video id="my-player" class="video-js vjs-big-play-centered">
-                          <source src="rtmp://rtmp-w.quklive.com/live/w1551170380026773" type="video/mp4"></source>
-                            <source src=<%= live %> type="rtmp/flv">
-                          <p class="vjs-no-js">
-                            请升级浏览器
-                            <a href="rtmp://rtmp-w.quklive.com/live/w1551170380026773">
-                              supports HTML5 video
-                            </a>
-                          </p>
-                      </video>
-                         </div>
+                         <!-- <div class="card-body"> -->
+                           <!-- <video id="my-player" class="video-js vjs-big-play-centered">
+                              <source src="rtmp://58.200.131.2:1935/livetv/hunantv" type="rtmp/flv"></source>
+                    
+                              <p class="vjs-no-js">
+                                请升级浏览器
+                                <a href="rtmp://rtmp-w.quklive.com/live/w1551170380026773">
+                                  supports HTML5 video
+                                </a>
+                              </p>
+                            </video> -->
+                            <iframe class="card-body rtmpvideo" src="http://cloud.quklive.com/cloud/a/embed/1551170380026773"></iframe>
+                         <!-- </div> -->
                        </div>
                
                      </div>
@@ -115,12 +121,13 @@
 
     <script>
       var options = {};
-      videojs.options.flash.swf = "/lab/video-js.swf";
+      console.log(videojs)
+      videojs.options.flash.swf = "http://localhost:3000/js/video-js.swf";
       // 初始化视频，设为全局变量
       var myPlayer = videojs('my-player', {
           autoplay: true,
           controls: true,//控制条
-          poster: "https://vjs.zencdn.net/v/oceans.png",
+          // poster: "https://vjs.zencdn.net/v/oceans.png",
           techOrder: ["flash"],
           muted: true,// 静音
           preload: "auto",// 预加载
@@ -128,15 +135,6 @@
           dataSetup: '{}',
           width: '600px',
           fluid: true
-      }, function () {
-          console.log("--------------成功初始化视频--------------");
-          this.play();
-          myPlayer.one("playing", function () {         // 监听播放
-              console.log("开始播放");
-          });
-          myPlayer.one("error", function (error) {      // 监听错误
-              console.error("监听到异常，错误信息：%o",error);
-          });
       });
     </script>
     

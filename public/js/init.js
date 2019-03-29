@@ -1,6 +1,11 @@
 ﻿var myChart = echarts.init(document.getElementById('chart'));
 var option = {};
-var socket = io.connect('http://118.25.92.237:3001');
+var maxY = 0.5
+// var socket = io.connect('http://118.25.92.237:3001');
+function rangeY(y) {
+	maxY = y
+}
+var socket = io.connect('http://localhost:3001');
 var chart = document.getElementById('chart');
 window.addEventListener('resize', function(){
 	myChart.resize();
@@ -23,7 +28,8 @@ socket.on('message',
 			yAxis: {
 				splitLine: {
 					show: false
-				}
+				},
+				max: maxY
 			},
 			toolbox: {
 				left: 'center',
@@ -76,7 +82,8 @@ myChart.setOption(option = {
 	yAxis: {
 		splitLine: {
 			show: false
-		}
+		},
+		max: maxY
 	},
 	series: {
 		name: '实验波形图',

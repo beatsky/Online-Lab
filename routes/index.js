@@ -32,6 +32,13 @@ router.post('/speed', async (ctx, next) => {
   console.log('CE03\/r\/n')
 })
 
+router.get('/video', async (ctx, next) => {
+  await ctx.render('video', {
+  })
+  
+})
+
+
 module.exports = router
 
 
