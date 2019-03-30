@@ -19,8 +19,8 @@ var high = 0;
 var low = 0;
 var command = '';
 
-var sava = {
-	data: ['LiSA'],
+global.save = {
+	data: [],
 	time: []
 }
 
@@ -41,7 +41,7 @@ io.on('connection', function (websocket) {
 	})
 
 	websocket.on('getData', function (data) {
-		io.emit('save', sava)
+		io.emit('save', save)
 	})
 })
 
@@ -58,19 +58,18 @@ server.on('connection',function (socket) {
 	  	command = ''
 	  	console.log(command)
 	  }
-	  console.log(data)
+	  console.log(global.save)
 	  str = data.toJSON().data
-	  console.log(str)
 	  for(let i = 0;i < str.length;i++){
 	  	if(str[i]==65){
 	  		console.log(str[i+2], str[i+3])
 	  		high = manageData(str[i+2], str[i+3])
 	  		console.log(high)
 	  		dataArr.push(high)
-	  		sava.data.push(high)
+	  		global.save.data.push(high)
 	  		x++
 	  		timeArr.push(x);
-	  		sava.time.push(x)
+	  		global.save.time.push(x)
 	  	}
 	  }
 	  

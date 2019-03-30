@@ -1,6 +1,6 @@
 ﻿var myChart = echarts.init(document.getElementById('chart'));
 var option = {};
-var socket = io.connect('http://118.25.92.237:3001');
+var socket = io.connect('http://118.25.92.237:3000');
 var maxY = 0.5
 function rangeY() {
 	maxY = document.getElementById('peak').value

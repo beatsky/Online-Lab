@@ -21,6 +21,7 @@
     "koa-session": "^5.10.1",
     "koa-static": "^3.0.0",
     "koa-views": "^5.2.1",
+    "node-excel-export": "^1.4.4",
     "pug": "^2.0.0-rc.1",
     "socket.io": "^2.1.1"
   },

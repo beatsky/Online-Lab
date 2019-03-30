@@ -48,18 +48,24 @@ function reduceSpeed() {
 
 function saveData(){
 	socket.emit('getData', '');
-	socket.on('save', function(data){
-		var stringifyData = JSON.stringify(data);
-		var blob = new Blob([stringifyData]);
-		var file = new File([blob], "filename.json", {type: "text/json;charset=utf-8"});
-		console.log(blob);
-		console.log(window.URL.createObjectURL(blob))
-		var a1 = document.createElement('a')
-		a1.href = window.URL.createObjectURL(blob)
-		a1.innerHTML = 'saas'
-		document.body.appendChild(a1)
-	})
+	// socket.on('save', function(data){
+	// 	var stringifyData = JSON.stringify(data);
+	// 	var blob = new Blob([stringifyData]);
+	// 	var file = new File([blob], "filename.json", {type: "text/json;charset=utf-8"});
+	// 	console.log(blob);
+	// 	console.log(window.URL.createObjectURL(blob))
+	// 	var a1 = document.createElement('a')
+	// 	a1.href = window.URL.createObjectURL(blob)
+	// 	a1.innerHTML = 'saas'
+	// 	document.body.appendChild(a1)
+	// })
 
-
-}
+	// $.get("/1.swf",function(data,status){
+ //      console.log('download')
+ //      window.open('/1.swf')
+ //    })
+ 	setTimeout(()=>{
+ 		window.open('/excel')
+ 	}, 300)
+ }
 

@@ -17090,13 +17090,13 @@ body {
     -webkit-flex-direction: column;
     flex-direction: column; }
     .body-wrapper .page-wrapper .content-wrapper {
+      padding-left: 0px; }
+      .body-wrapper .page-wrapper .content-wrapper.drawer-minimized {
       padding: 30px 0px 0px 255px;
       min-height: calc(100vh - 64px - 40px);
       background: #f6f6f6;
       -webkit-flex-grow: 1;
       flex-grow: 1; }
-      .body-wrapper .page-wrapper .content-wrapper.drawer-minimized {
-        padding-left: 0px; }
     .body-wrapper .page-wrapper .footer {
       padding: 30px 0px 0px 255px; }
 
