@@ -12,17 +12,14 @@ const server = net.createServer();
 server.listen(3002);
 
 
-var labData = {};
-var m,s,time;
-var dataArr = [];
-var timeArr = [];
+var labData = {
+	data: [],
+	time: []
+};
 var str;
 var x = 0;
 
 // 储存
-global.labdata = []
-var allData = []
-var allTime = []
 
 global.save = {
 	data: [],
@@ -44,46 +41,29 @@ server.on('connection',function (socket) {
 	socket.on('data',function (data) {  
       str = data.split('s');
       for (let i = 1; i < str.length; i++) {
-      	dataArr.push(str[i]);
+      	labData.data.push(str[i]);
       	global.save.data.push(str[i]);
       	x++;
-      	timeArr.push(x);
+      	labData.time.push(x);
       	global.save.time.push(x);
       }
 	  
-	  if (dataArr.length > 39) {
-	  	for (let i = 0; i < dataArr.length-40; i++) {
-	  		dataArr.shift();
-	  		timeArr.shift();
-	  	}
-	  	
-        
-        labData.data = dataArr;
-	  	labData.time = timeArr;
-	  	labData.alltime = allTime;
-	  	labData.alldata = allData;
+	  if (labData.data.length > 100) {
+	  	labData.data.splice(0, 1);
+	  	labData.time.splice(0, 1)
 	  } 
 	  if (x%10==0) {
 	  	io.emit('message', labData);
-	  	//console.log(x);
-	  	//console.log(dataArr);
 	  }
 	  
 	}) 
 	
 	socket.on('end', function () {
-		dataArr = [];
-		timeArr = [];
-		global.labdata.push(labData)
-		// console.log(global.labdata)
-		buf=new Buffer(256);
-		buf.write(JSON.stringify(global.labdata),"utf-8");
-		fs.writeFile('./public/data.txt', buf)
-		labData = {};
+		labData = {
+			data: [],
+			time: []
+		};
 		x = 0;
-
-		allData = []
-		allTime = []
 	}) 
  });
 

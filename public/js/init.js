@@ -1,6 +1,6 @@
 ﻿var myChart = echarts.init(document.getElementById('chart'));
 var option = {};
-var socket = io.connect('http://118.25.92.237:3000');
+var socket = io.connect('http://127.0.0.1:3001');
 var maxY = 0.5
 function rangeY() {
 	maxY = document.getElementById('peak').value
@@ -11,15 +11,31 @@ var chart = document.getElementById('chart');
 window.addEventListener('resize', function(){
 	myChart.resize();
 })
+
+var peak = document.getElementById('peak')
+peak.oninput = function(){
+	console.log(222)
+	maxY = peak.value
+}
+
 socket.on('message', 
 	function (data) {
+		// console.log(data)
 		if(data.length <= 1){
 			return
 		}
+		if (data.time[0]<20) {
+			$('#mator').css({
+			background: '#00a9f4'
+			})
+			$('#mator').text('开')
+		}
 		myChart.setOption(option = {
-			// title: {
-			// 	text: '实验波形图'
-			// },
+			title:{
+				text:'time/s',
+				right:'0',
+				bottom: '15'
+			},
 			tooltip: {
 				trigger: 'axis'
 			},
@@ -50,20 +66,6 @@ socket.on('message',
 				name: '实验波形图',
 				type: 'line',
 				data: data.data,
-				markLine: {
-					silent: true,
-					data: [{
-						yAxis: -300
-					}, {
-						yAxis: -150
-					}, {
-						yAxis: 0
-					}, {
-						yAxis: 150
-					}, {
-						yAxis: 300
-					}]
-				},
 			}
 		});
 })
@@ -71,9 +73,11 @@ socket.on('message',
 
 
 myChart.setOption(option = {
-	// title: {
-	// 	text: '实验波形图'
-	// },
+	title:{
+		text:'time/s',
+		right:'0',
+		bottom: '15'
+	},
 	tooltip: {
 		trigger: 'axis'
 	},
@@ -84,11 +88,23 @@ myChart.setOption(option = {
 		splitLine: {
 			show: false
 		},
-		// max: 200
 	},
 	series: {
 		name: '实验波形图',
 		type: 'line',
 		data: [255, 161, 255, 161, 255, 161, 255, 161, 255, 161, 255, 161, 255, 161, 255, 161, 255, 161, 255, 161, 255, 161, 255, 161, 255, 161, 255, 161, 255, 161, 255, 161, 255, 161, 255, 161, 255, 161, 255, 161, 255]
-	}
+	},
+	toolbox: {
+		left: 'center',
+		feature: {
+			dataZoom: {
+				yAxisIndex: 'none'
+			},
+			saveAsImage: {}
+		}
+	},
+	dataZoom: [
+	{
+		type: 'inside'
+	}]
 });

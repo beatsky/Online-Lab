@@ -11,6 +11,32 @@ function speedCalc(sp){
 	}
 }
 
+function speedInner(sp) {
+	let inner = sp/10;
+	if (inner%1==0) {
+		inner = inner + '.0'
+	}
+	return inner
+}
+
+let closeN = 0;
+$('#mator').on('click', function(){
+	if (closeN%2==0) {
+		$('#mator').css({
+			background: '#00a9f4'
+		})
+		$('#mator').text('开')
+	}else{
+		$('#mator').css({
+			background: '#e52d27'
+		})
+		$('#mator').text('关')
+	}
+	closeN++;
+	socket.emit('speed', `CE00\/r\/n`);
+})
+
+
 
 function lockBig() {
 	socket.emit('speed', `CD0\/r\/n`);
@@ -27,12 +53,8 @@ function addSpeed() {
 	sp = sp + 1
   	socket.emit('speed', `CE${speedCalc(sp)}\/r\/n`);
 	console.log(`CE${speedCalc(sp)}\/r\/n`)
-	speedNum.innerHTML = sp
+	speedNum.innerHTML = speedInner(sp)
 	// socket.emit('speed', `CE3.8\/r\/n`);
-}
-
-function close(){
-	socket.emit('speed', `CE00\/r\/n`);
 }
 
 
@@ -43,29 +65,15 @@ function reduceSpeed() {
 	sp = sp - 1
 	socket.emit('speed', `CE${speedCalc(sp)}\/r\/n`);
 	console.log(`CE${speedCalc(sp)}\/r\/n`)
-	speedNum.innerHTML = sp
+	speedNum.innerHTML = speedInner(sp)
 }
 
 function saveData(){
 	socket.emit('getData', '');
-	// socket.on('save', function(data){
-	// 	var stringifyData = JSON.stringify(data);
-	// 	var blob = new Blob([stringifyData]);
-	// 	var file = new File([blob], "filename.json", {type: "text/json;charset=utf-8"});
-	// 	console.log(blob);
-	// 	console.log(window.URL.createObjectURL(blob))
-	// 	var a1 = document.createElement('a')
-	// 	a1.href = window.URL.createObjectURL(blob)
-	// 	a1.innerHTML = 'saas'
-	// 	document.body.appendChild(a1)
-	// })
 
-	// $.get("/1.swf",function(data,status){
- //      console.log('download')
- //      window.open('/1.swf')
- //    })
  	setTimeout(()=>{
  		window.open('/excel')
  	}, 300)
  }
+
 

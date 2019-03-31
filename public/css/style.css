@@ -287,6 +287,16 @@ body > #overlay {
 
 #chart {
   width: 100%;
-  height: 200px;
+  height: 280px;
   margin: 0 auto;
+}
+.rtmpvideo {
+  height: 300px;
+  width: 100%;
+}
+.card-body {
+  padding: 0;
+}
+.card .card-body {
+    padding: 0!important;
 }

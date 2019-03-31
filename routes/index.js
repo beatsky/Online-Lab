@@ -10,7 +10,7 @@ router.get('/lab', async (ctx, next) => {
   }else{
   	user = true
   }
-  await ctx.render('lab', {
+  await ctx.render('bslab', {
   	user,
     live
   })
@@ -27,7 +27,10 @@ router.get('/', async (ctx, next) => {
   })
 })
 
-
+// router.get('/bs', async (ctx, next) => {
+//   await ctx.render('bslab', {
+//   })
+// })
 
 
 

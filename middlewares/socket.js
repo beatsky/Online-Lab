@@ -8,11 +8,10 @@ ioServer.listen(3001);
 const server = net.createServer();
 server.listen(3002);
 
-
-var labData = {};
-var m,s,time;
-var dataArr = [];
-var timeArr = [];
+var labData = {
+	data: [],
+	time: []
+};
 var str;
 var x = 0;
 var high = 0;
@@ -65,27 +64,20 @@ server.on('connection',function (socket) {
 	  		console.log(str[i+2], str[i+3])
 	  		high = manageData(str[i+2], str[i+3])
 	  		console.log(high)
-	  		dataArr.push(high)
-	  		global.save.data.push(high)
+	  		labData.data.push(high)
 	  		x++
-	  		timeArr.push(x);
-	  		global.save.time.push(x)
+	  		labData.time.push(x);
 	  	}
 	  }
 	  
-	  if (dataArr.length >= 39) {
-	  	for (let i = 0; i < dataArr.length-40; i++) {
-	  		dataArr.shift();
-	  		timeArr.shift();
-	  	}
-	
-	    labData.data = dataArr;
-	  	labData.time = timeArr;
+	  if (dataArr.length >= 1000) {
+	  	labData.data.splice(0, 1);
+	  	labData.time.splice(0, 1)
 	  } 
-	  if (x%10==0 && x>=40) {
+	  if (x%10==0 && x>=10) {
 	  	io.emit('message', labData);
-//	  	console.log(labData.data.length, labData.time.length);
-//	  	console.log(labData);
+	  	global.save.time = labData.time;
+	  	global.save.data = labData.data;
 	  }
 	
 	}) 
@@ -95,5 +87,6 @@ server.on('connection',function (socket) {
 		timeArr = [];
 		labData = {};
 		x = 0;
+		global.save = {}
 	})
  });
