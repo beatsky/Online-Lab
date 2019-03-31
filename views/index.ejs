@@ -110,8 +110,8 @@
 
 			      <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
               <div class="mdc-card card--with-avatar">
-                <iframe class="card-body rtmpvideo" src="http://cloud.quklive.com/cloud/a/embed/1551170380026773"></iframe>
-                 
+                <!-- <iframesrc="http://cloud.quklive.com/cloud/a/embed/1551170380026773"></iframe> -->
+                <div id="video" class="card-body rtmpvideo"></div> 
               </div>
             </div>
             <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
@@ -159,6 +159,18 @@
       </footer>
     </div>
   </div>
+
+  <script type="text/javascript" src="ckplayer/ckplayer.js"></script>
+  <script type="text/javascript">
+    var videoObject = {
+      container: '#video', //容器的ID或className
+      variable: 'player',//播放函数名称
+      autoplay:false,
+      live:true,
+      video: 'rtmp://rtmpdist-w.quklive.com/live/w1551170380026773'
+    };
+    var player = new ckplayer(videoObject);
+  </script>
   <script src="js/material-components-web.min.js"></script>
   <script src="js/jquery.3.2.1.min.js"></script>
   <script src="js/misc.js"></script>
