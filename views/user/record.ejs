@@ -1,0 +1,40 @@
+<%- include('./header')%>
+		<%- include('./nav')%>
+			<div class="main-panel">
+				<div class="content">
+					<div class="container-fluid">
+						<h4 class="page-title">实验记录</h4>
+						<div class="row">
+							<div class="col-md-12">
+								<div class="card">
+									<div class="card-header">
+										<div class="card-title">records</div>
+									</div>
+									<div class="card-body">
+										<table class="table table-head-bg-info">
+											<thead>
+												<tr>
+													<th scope="col">开始时间</th>
+													<th scope="col">结束时间</th>
+													<th scope="col">IP</th>
+													<!-- <th scope="col">视频流</th> -->
+													<!-- <th scope="col">同意预约</th> -->
+												</tr>
+											</thead>
+											<tbody class="tbcheck">
+											<% for(var i=0; i<record.length; i++) { %>
+												<tr>
+													<td><%= record[i].start %></td>
+													<td><%= record[i].end %></td>
+													<td>192.168.0.1</td>
+												</tr>
+											<% } %>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<%- include('./footer')%>

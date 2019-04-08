@@ -23,6 +23,13 @@ global.save = {
 	time: []
 }
 
+var record = {
+	start: '',
+	end: ''
+}
+global.record = []
+
+
 function manageData(low, high) {
 	if((256*high + low)>=32768){
 		return -1*(65535-(256*high + low)+1)/32768*16
@@ -48,6 +55,9 @@ io.on('connection', function (websocket) {
 
 // 接受实验仪器数据，处理数据，发送给前端
 server.on('connection',function (socket) {
+
+	record.start = new Date().toLocaleString()
+
 	// 控制电机
 	// socket.setEncoding('utf8');
 	socket.on('data',function (data) {  
@@ -88,5 +98,7 @@ server.on('connection',function (socket) {
 		labData = {};
 		x = 0;
 		global.save = {}
+		record.end = new Date().toLocaleString()
+		global.record.push(record)
 	})
  });

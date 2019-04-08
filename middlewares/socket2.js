@@ -26,9 +26,15 @@ global.save = {
 	time: []
 }
 
+var record = {
+	start: '',
+	end: ''
+}
+global.record = []
 
 // 接受实验仪器数据，处理数据，发送给前端
 server.on('connection',function (socket) {  
+	record.start = new Date().toLocaleString()
 
 	// 控制电机
 	io.on('connection', function (websocket) {
@@ -64,6 +70,8 @@ server.on('connection',function (socket) {
 			time: []
 		};
 		x = 0;
+		record.end = new Date().toLocaleString()
+		global.record.push(record)
 	}) 
  });
 

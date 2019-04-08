@@ -47,6 +47,7 @@ router.get('/', async (ctx, next) => {
   ctx.response.redirect('/users/order');
 })
 
+
 // 已批准预约显示选中
 router.get('/order', async (ctx, next) => {
   orderList.forEach(function(item){
@@ -79,6 +80,16 @@ router.post('/approve', async (ctx, next) => {
     global.live = orderList[num.index].live
     global.limit = true
   }
+})
+
+
+// 实验记录
+router.get('/record', async (ctx, next) => {
+  let record = global.record
+  console.log(record)
+  await ctx.render('./user/record', {
+    record
+  })
 })
 
 

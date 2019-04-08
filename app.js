@@ -7,8 +7,8 @@ const bodyparser = require('koa-bodyparser')
 const logger = require('koa-logger')
 const session = require('koa-session')
 
-// const socket = require('./middlewares/socket.js')
-const socket = require('./middlewares/socket2.js')
+const socket = require('./middlewares/socket.js')
+// const socket = require('./middlewares/socket2.js')
 
 // routes
 const index = require('./routes/index')
