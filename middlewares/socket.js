@@ -107,5 +107,6 @@ server.on('connection',function (socket) {
 		global.save = {}
 		record.end = new Date().toLocaleString()
 		global.record.push(record)
+		io.emit('switch', 'off')
 	})
  });

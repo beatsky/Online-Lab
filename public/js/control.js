@@ -21,22 +21,31 @@ function speedInner(sp) {
 
 
 socket.on('switch', function(data){
-	console.log(123)
-	if (data=='on') {
-		$('#mator').css({
-			background: '#00a9f4'
-		})
-		$('#mator').text('开')
-	} else {
-		$('#mator').css({
-			background: '#e52d27'
-		})
-		$('#mator').text('关')
+	switch(data) {
+		case 'on': {
+			$('#mator').css({
+				background: '#00a9f4'
+			})
+			$('#mator').text('开')
+			break;
+		}
+		case 'off': {
+			$('#mator').css({
+				background: 'rgb(204, 204, 204)'
+			})
+			$('#mator').text('关')
+			break;
+		}
 	}
 })
 
 
 $('#mator').on('click', function(){
+
+	if ($('#mator').css('background-color') == 'rgb(204, 204, 204)') {
+		return
+	}
+
 	if ($('#mator').text() == '关') {
 		$('#mator').css({
 			background: '#00a9f4'
