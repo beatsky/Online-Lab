@@ -25,12 +25,13 @@ global.save = {
 	data: [],
 	time: []
 }
+// 连接记录
+global.record = []
 
 var record = {
 	start: '',
 	end: ''
 }
-global.record = []
 
 // 接受实验仪器数据，处理数据，发送给前端
 server.on('connection',function (socket) {  
@@ -48,10 +49,10 @@ server.on('connection',function (socket) {
       str = data.split('s');
       for (let i = 1; i < str.length; i++) {
       	labData.data.push(str[i]);
-      	global.save.data.push(str[i]);
+      	// global.save.data.push(str[i]);
       	x++;
       	labData.time.push(x);
-      	global.save.time.push(x);
+      	// global.save.time.push(x);
       }
 	  
 	  if (labData.data.length > 100) {

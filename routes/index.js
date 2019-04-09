@@ -27,10 +27,8 @@ router.get('/', async (ctx, next) => {
   })
 })
 
-// router.get('/bs', async (ctx, next) => {
-//   await ctx.render('bslab', {
-//   })
-// })
+
+
 
 
 
@@ -76,6 +74,7 @@ const specification = {
   }
 }
 
+// excel 下载数据
 router.get('/excel', async (ctx, next) => {
   let report = nodeExcel.buildExport(
     [ 

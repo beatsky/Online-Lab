@@ -16,8 +16,8 @@
 												<tr>
 													<th scope="col">姓名</th>
 													<th scope="col">预约时间</th>
+													<th scope="col">预计时长</th>
 													<th scope="col">备注</th>
-													<th scope="col">视频流</th>
 													<th scope="col">同意预约</th>
 												</tr>
 											</thead>
@@ -26,8 +26,8 @@
 												<tr>
 													<td><%= orderList[i].name %></td>
 													<td><%= orderList[i].time %></td>
-													<td><%= orderList[i].remark %></td>
 													<td><%= orderList[i].live %></td>
+													<td><%= orderList[i].remark %></td>
 													<td><input type="checkbox" <%= orderList[i].cur %> data-toggle="toggle" data-onstyle="success"></td>
 												</tr>
 											<% } %>

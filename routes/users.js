@@ -6,19 +6,11 @@ let orderList = []
 
 // 登录
 router.get('/login', async (ctx, next) => {
-  if (!ctx.session.user) {
-	  	// ctx.response.redirect('/users/login');
-	}
   await ctx.render('login', {
   })
 })
 
-// 未登录重定向
-// router.get('/*', async (ctx, next) => {
-//   if (!ctx.session.user) {
-// 	  	ctx.response.redirect('/users/login');
-// 	}
-// })
+
 
 router.post('/login', async (ctx, next) => {
 	var data = await ctx.request.body
@@ -34,6 +26,7 @@ router.post('/login', async (ctx, next) => {
 //登出
 router.get('/logout', async (ctx, next) => {
   ctx.session.user = undefined
+  console.log(ctx.session.user)
   ctx.response.redirect('/users/login');
 })
 
@@ -50,6 +43,9 @@ router.get('/', async (ctx, next) => {
 
 // 已批准预约显示选中
 router.get('/order', async (ctx, next) => {
+  if (!ctx.session.user) {
+     ctx.response.redirect('/users/login');
+  }
   orderList.forEach(function(item){
   	if (item.live==global.live) {
   		item.cur = "checked"
@@ -62,6 +58,7 @@ router.get('/order', async (ctx, next) => {
   	orderList
   })
 })
+
 
 // 实验预约
 router.post('/order', async (ctx, next) => {
@@ -85,6 +82,9 @@ router.post('/approve', async (ctx, next) => {
 
 // 实验记录
 router.get('/record', async (ctx, next) => {
+  if (!ctx.session.user) {
+     ctx.response.redirect('/users/login');
+  }
   let record = global.record
   console.log(record)
   await ctx.render('./user/record', {
@@ -92,5 +92,12 @@ router.get('/record', async (ctx, next) => {
   })
 })
 
+
+// 未登录重定向
+// router.get('/*', async (ctx, next) => {
+//   if (!ctx.session.user) {
+//      ctx.response.redirect('/users/login');
+//   }
+// })
 
 module.exports = router

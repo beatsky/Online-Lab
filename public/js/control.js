@@ -19,9 +19,25 @@ function speedInner(sp) {
 	return inner
 }
 
-let closeN = 0;
+
+socket.on('switch', function(data){
+	console.log(123)
+	if (data=='on') {
+		$('#mator').css({
+			background: '#00a9f4'
+		})
+		$('#mator').text('开')
+	} else {
+		$('#mator').css({
+			background: '#e52d27'
+		})
+		$('#mator').text('关')
+	}
+})
+
+
 $('#mator').on('click', function(){
-	if (closeN%2==0) {
+	if ($('#mator').text() == '关') {
 		$('#mator').css({
 			background: '#00a9f4'
 		})
@@ -32,7 +48,6 @@ $('#mator').on('click', function(){
 		})
 		$('#mator').text('关')
 	}
-	closeN++;
 	socket.emit('speed', `CE00\/r\/n`);
 })
 

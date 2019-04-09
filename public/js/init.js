@@ -1,20 +1,22 @@
 ﻿var myChart = echarts.init(document.getElementById('chart'));
 var option = {};
 var socket = io.connect('http://118.25.92.237:3001');
+// var socket = io.connect('http://127.0.0.1:3001');
 var maxY = 0.5
 function rangeY() {
 	maxY = document.getElementById('peak').value
 	console.log(maxY)
 }
 
+// 图表自适应
 var chart = document.getElementById('chart');
 window.addEventListener('resize', function(){
 	myChart.resize();
 })
 
+// 图表更改峰值
 var peak = document.getElementById('peak')
 peak.oninput = function(){
-	console.log(222)
 	maxY = peak.value
 }
 
@@ -68,10 +70,11 @@ socket.on('message',
 				data: data.data,
 			}
 		});
-})
+	})
 
 
 
+// 页面初始假数据
 myChart.setOption(option = {
 	title:{
 		text:'time/s',
