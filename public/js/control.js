@@ -19,7 +19,7 @@ function speedInner(sp) {
 	return inner
 }
 
-
+// 开关打开
 socket.on('switch', function(data){
 	switch(data) {
 		case 'on': {
@@ -27,6 +27,20 @@ socket.on('switch', function(data){
 				background: '#00a9f4'
 			})
 			$('#mator').text('开')
+
+			$('#magnet').css({
+				background: '#00a9f4'
+			})
+			$('#magnet').text('开')
+
+			$('#add').css({
+				background: '#00a9f4'
+			})
+
+			$('#reduce').css({
+				background: '#00a9f4'
+			})
+
 			break;
 		}
 		case 'off': {
@@ -34,6 +48,19 @@ socket.on('switch', function(data){
 				background: 'rgb(204, 204, 204)'
 			})
 			$('#mator').text('关')
+
+			$('#magnet').css({
+				background: 'rgb(204, 204, 204)'
+			})
+			$('#magnet').text('关')
+
+			$('#add').css({
+				background: 'rgb(204, 204, 204)'
+			})
+
+			$('#reduce').css({
+				background: 'rgb(204, 204, 204)'
+			})
 			break;
 		}
 	}
@@ -62,16 +89,41 @@ $('#mator').on('click', function(){
 
 
 
-function lockBig() {
-	socket.emit('speed', `CD0\/r\/n`);
-}
+$('#magnet').on('click', function(){
 
-function lockSmall() {
-	socket.emit('speed', `CD1\/r\/n`);
-}
+	if ($('#magnet').css('background-color') == 'rgb(204, 204, 204)') {
+		return
+	}
+
+	if ($('#magnet').text() == '关') {
+		$('#magnet').css({
+			background: '#00a9f4'
+		})
+		$('#magnet').text('开')
+		socket.emit('speed', `CD0\/r\/n`);
+	}else{
+		$('#magnet').css({
+			background: '#e52d27'
+		})
+		$('#magnet').text('关')
+		socket.emit('speed', `CD1\/r\/n`)
+	}
+	socket.emit('speed', `CE00\/r\/n`);
+})
+
+
+
+// function lockBig() {
+// 	socket.emit('speed', `CD0\/r\/n`);
+// }
+
+// function lockSmall() {
+// 	socket.emit('speed', `CD1\/r\/n`);
+// }
+
 
 function addSpeed() {
-	if(sp==50){
+	if(sp==50 || $('#add').css('background-color') == 'rgb(204, 204, 204)'){
 		return
 	}
 	sp = sp + 1
@@ -83,7 +135,7 @@ function addSpeed() {
 
 
 function reduceSpeed() {
-	if(sp==20){
+	if(sp==20 || $('#reduce').css('background-color') == 'rgb(204, 204, 204)'){
 		return
 	}
 	sp = sp - 1

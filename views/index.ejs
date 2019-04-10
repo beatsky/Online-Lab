@@ -151,16 +151,18 @@
             </div>
             <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4">
               <div class="mdc-card py-3 pl-2 d-flex flex-row align-item-center">
-                                <button class="mdc-button mdc-button--raised secondary-filled-button" onclick="lockBig()">开</button>
+                <!-- <button class="mdc-button mdc-button--raised secondary-filled-button" onclick="lockBig()">开</button>
                 <a href="#" class="mdc-button mdc-button--raised" role="button" aria-disabled="true">电磁铁</a>
-                <button class="mdc-button  mdc-button--stroked secondary-stroked-button" onclick="lockSmall()">关</button>
+                <button class="mdc-button  mdc-button--stroked secondary-stroked-button" onclick="lockSmall()">关</button> -->
+                <label>电磁铁</label>
+                <button class="close-button" id="magnet">关</button>
               </div>
             </div>
             <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4">
               <div class="mdc-card py-3 pl-2 d-flex flex-row align-item-center">
-                <button class="mdc-button mdc-button--raised secondary-filled-button" onclick="addSpeed()">加速</button>
+                <button class="close-button" onclick="addSpeed()" id="add">加速</button>
                 <a href="#" class="mdc-button mdc-button--raised" id="speedNum" role="button" aria-disabled="true">2.0</a>
-                <button class="mdc-button mdc-button--stroked secondary-stroked-button mdc-ripple-upgraded" onclick="reduceSpeed()">减速</button>
+                <button class="close-button" onclick="reduceSpeed()" id="reduce">减速</button>
               </div>
             </div>
           </div>
@@ -187,7 +189,6 @@
   <script src="js/jquery.3.2.1.min.js"></script>
   <script src="js/misc.js"></script>
   <script src="js/material.js"></script>
-  <script src="js/jquery.3.2.1.min.js"></script>
   <script src="js/echarts.min.js"></script>
   <script src="js/init.js"></script>
   <script src="js/control.js"></script>
