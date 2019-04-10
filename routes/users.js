@@ -3,6 +3,7 @@ const router = require('koa-router')()
 router.prefix('/users')
 
 let orderList = []
+global.orderList = []
 
 // 登录
 router.get('/login', async (ctx, next) => {
@@ -64,6 +65,7 @@ router.get('/order', async (ctx, next) => {
 router.post('/order', async (ctx, next) => {
   ctx.response.body = '预约成功';
   await orderList.push(ctx.request.body)
+  global.orderList.push(ctx.request.body)
 })
 
 router.post('/approve', async (ctx, next) => {

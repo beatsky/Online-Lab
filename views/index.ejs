@@ -79,8 +79,7 @@
         </div>
       </nav>
     </aside>
-    <!-- partial -->
-    <!-- partial:partials/_navbar.html -->
+    
     <header class="mdc-toolbar mdc-elevation--z4 mdc-toolbar--fixed">
       <div class="mdc-toolbar__row">
         <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
@@ -113,7 +112,8 @@
         </section>
       </div>
     </header>
-    <!-- partial -->
+
+    <% if (user) { %>
     <div class="page-wrapper mdc-toolbar-fixed-adjust">
       <main class="content-wrapper">
         <div class="mdc-layout-grid">
@@ -172,6 +172,11 @@
         
       </footer>
     </div>
+    <% } else {%>
+    <div class="page-wrapper mdc-toolbar-fixed-adjust">
+      <h1>未到预约时间</h1>
+    </div>
+    <% } %>
   </div>
 
   <script type="text/javascript" src="ckplayer/ckplayer.js"></script>
