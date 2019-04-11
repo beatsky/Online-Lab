@@ -1,7 +1,7 @@
 ﻿var myChart = echarts.init(document.getElementById('chart'));
 var option = {};
-// var socket = io.connect('http://118.25.92.237:3001');
-var socket = io.connect('http://127.0.0.1:3001');
+var socket = io.connect('http://118.25.92.237:3001');
+// var socket = io.connect('http://127.0.0.1:3001');
 var Y = 0.05
 function rangeY() {
 	Y = document.getElementById('peak').value

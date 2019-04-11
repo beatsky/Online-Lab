@@ -54,7 +54,7 @@ io.on('connection', function (websocket) {
 // 接受实验仪器数据，处理数据，发送给前端
 server.on('connection',function (socket) {  
 	record.start = new Date().toLocaleString()
-
+	io.emit('switch', 'on')
 	// 控制电机
 	io.on('connection', function (websocket) {
 		websocket.on('speed', function (data) {
@@ -80,7 +80,8 @@ server.on('connection',function (socket) {
 	  } 
 	  if (x%10==0) {
 	  	io.emit('message', labData);
-	  	console.log(labData.data.length, labData.time.length)
+	  	global.save.time = labData.time;
+	  	global.save.data = labData.data;
 	  }
 	  
 	}) 

@@ -50,8 +50,8 @@ router.get('/', async (ctx, next) => {
 
 let calcObj = function(save){
   let arr = []
-  let obj = {data: '', time: ''}
   for (var i = 0; i < save.data.length; i++) {
+  let obj = {data: '', time: ''}
     obj.data = save.data[i];
     obj.time = save.time[i];
     arr.push(obj)

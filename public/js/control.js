@@ -28,9 +28,9 @@ socket.on('switch', function(data){
 			$('#mator').text('开')
 
 			$('#magnet').css({
-				background: '#00a9f4'
+				background: 'rgb(229, 45, 39)'
 			})
-			$('#magnet').text('开')
+			// $('#magnet').text('开')
 
 			$('#add').css({
 				background: '#00a9f4'
@@ -51,7 +51,7 @@ socket.on('switch', function(data){
 			$('#magnet').css({
 				background: 'rgb(204, 204, 204)'
 			})
-			$('#magnet').text('关')
+			// $('#magnet').text('关')
 
 			$('#add').css({
 				background: 'rgb(204, 204, 204)'

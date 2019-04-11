@@ -88,8 +88,10 @@
         </section>
         <section class="mdc-toolbar__section mdc-toolbar__section--align-end" role="toolbar">
           <div class="mdc-menu-anchor">
-            <a href="#" class="mdc-toolbar__icon mdc-ripple-surface" data-mdc-auto-init="MDCRipple">
-              <i class="material-icons">widgets</i>
+            <a href="#" class="mdc-toolbar__icon mdc-ripple-surface" data-mdc-auto-init="MDCRipple" onclick="saveData()" style="color: #fff">
+              <!-- <i class="material-icons">widgets</i> -->
+              <!-- <button class="mdc-button mdc-button--raised" onclick="saveData()" id="save">保存数据</button> -->
+              保存数据
             </a>
           </div>
           <div class="mdc-menu-anchor mr-1">
@@ -146,14 +148,11 @@
               <div class="mdc-card py-3 pl-2 d-flex flex-row align-item-center">
                 <label>电机</label>
                 <button class="close-button" id="mator">关</button>
-                <!-- <button class="mdc-button mdc-button--raised" onclick="saveData()">保存数据</button> -->
+                <!-- <button class="mdc-button mdc-button--raised" onclick="saveData()" id="save">保存数据</button> -->
               </div>
             </div>
             <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4">
               <div class="mdc-card py-3 pl-2 d-flex flex-row align-item-center">
-                <!-- <button class="mdc-button mdc-button--raised secondary-filled-button" onclick="lockBig()">开</button>
-                <a href="#" class="mdc-button mdc-button--raised" role="button" aria-disabled="true">电磁铁</a>
-                <button class="mdc-button  mdc-button--stroked secondary-stroked-button" onclick="lockSmall()">关</button> -->
                 <label>电磁铁</label>
                 <button class="close-button" id="magnet">关</button>
               </div>

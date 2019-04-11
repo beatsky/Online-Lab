@@ -8,7 +8,7 @@ const logger = require('koa-logger')
 const session = require('koa-session')
 
 require('./middlewares/socket.js')
-// const socket = require('./middlewares/socket2.js')
+// require('./middlewares/socket2.js')
 
 // routes
 const index = require('./routes/index')
