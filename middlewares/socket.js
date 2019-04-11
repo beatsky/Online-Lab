@@ -71,25 +71,28 @@ server.on('connection',function (socket) {
 
 	  if(command){
 	  	socket.write(command, '')
-	  	command = ''
+	  	// console.log(command)
+		command = ''
 	  }
-
+	console.log(data)
 	  str = data.toJSON().data
 
 	  for(let i = 0;i < str.length;i++){
-	  	if(str[i]==65){
+	  	if(str[i]==65&&str[i+1]==81){
 	  		peakValue = manageData(str[i+2], str[i+3])
 	  		labData.data.push(peakValue)
 	  		x++
-	  		labData.time.push(x);
+	  		labData.time.push(x/100);
 	  	}
 	  }
 	  
-	  if (labData.data.length >= 1000) {
-	  	labData.data.splice(0, 1);
-	  	labData.time.splice(0, 1)
+	  if (labData.data.length >= 100) {
+	  	// labData.data.splice(0, 1);
+	  	// labData.time.splice(0, 1)
+	  	labData.data.splice(0, labData.data.length-100);
+	  	labData.time.splice(0, labData.time.length-100);
 	  } 
-	  // 每10秒向前端发送一次数据
+	  // 每10毫秒向前端发送一次数据
 	  if (x%10==0 && x>=10) {
 	  	io.emit('message', labData);
 	  	global.save.time = labData.time;

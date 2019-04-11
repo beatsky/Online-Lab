@@ -1,11 +1,10 @@
 ﻿var myChart = echarts.init(document.getElementById('chart'));
 var option = {};
-var socket = io.connect('http://118.25.92.237:3001');
-// var socket = io.connect('http://127.0.0.1:3001');
-var maxY = 0.5
+// var socket = io.connect('http://118.25.92.237:3001');
+var socket = io.connect('http://127.0.0.1:3001');
+var Y = 0.05
 function rangeY() {
-	maxY = document.getElementById('peak').value
-	console.log(maxY)
+	Y = document.getElementById('peak').value
 }
 
 // 图表自适应
@@ -33,22 +32,20 @@ socket.on('message',
 			$('#mator').text('开')
 		}
 		myChart.setOption(option = {
-			title:{
-				text:'time/s',
-				right:'0',
-				bottom: '15'
-			},
 			tooltip: {
 				trigger: 'axis'
 			},
 			xAxis: {
+				name: 'time/s',
 				data: data.time,
 			},
 			yAxis: {
 				splitLine: {
 					show: false
 				},
-				max: maxY
+				name: 'Amp/g',
+				max: Y,
+				min: -Y
 			},
 			toolbox: {
 				left: 'center',
@@ -76,21 +73,18 @@ socket.on('message',
 
 // 页面初始假数据
 myChart.setOption(option = {
-	title:{
-		text:'time/s',
-		right:'0',
-		bottom: '15'
-	},
 	tooltip: {
 		trigger: 'axis'
 	},
 	xAxis: {
+		name: 'time/s',
 		data: [10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50]
 	},
 	yAxis: {
 		splitLine: {
 			show: false
 		},
+		name: 'Amp/g',
 	},
 	series: {
 		name: '实验波形图',

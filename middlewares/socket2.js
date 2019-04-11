@@ -33,6 +33,24 @@ var record = {
 	end: ''
 }
 
+
+
+
+io.on('connection', function (websocket) {
+	// websocket.on('speed', function (data) {
+	// 	// console.log(data)
+	// 	command = data
+	// })
+
+	// websocket.on('getData', function (data) {
+	// 	io.emit('save', save)
+	// })
+})
+
+
+
+
+
 // 接受实验仪器数据，处理数据，发送给前端
 server.on('connection',function (socket) {  
 	record.start = new Date().toLocaleString()
@@ -56,11 +74,13 @@ server.on('connection',function (socket) {
       }
 	  
 	  if (labData.data.length > 100) {
-	  	labData.data.splice(0, 1);
-	  	labData.time.splice(0, 1)
+	  	labData.data.splice(0, labData.data.length-100);
+	  	labData.time.splice(0, labData.time.length-100);
+	  	console.log(labData.data.length, labData.time.length)
 	  } 
 	  if (x%10==0) {
 	  	io.emit('message', labData);
+	  	console.log(labData.data.length, labData.time.length)
 	  }
 	  
 	}) 

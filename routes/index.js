@@ -23,21 +23,21 @@ router.get('/order', async (ctx, next) => {
 })
 
 router.get('/', async (ctx, next) => {
-  let user
-  if(ctx.session.user){
-    user = true
-  }else{
-    let now = new Date().toLocaleDateString().split('/').join('-')
-    let time = new Date().toTimeString().split(':')[0]
-    console.log(time)
-    for (let i = 0; i < global.orderList.length; i++) {
+  let user = true
+  // if(ctx.session.user){
+  //   user = true
+  // }else{
+  //   let now = new Date().toLocaleDateString().split('/').join('-')
+  //   let time = new Date().toTimeString().split(':')[0]
+  //   console.log(time)
+  //   for (let i = 0; i < global.orderList.length; i++) {
       
-      if (now == global.orderList[i].time.split(' ')[0] || time >= global.orderList[i].time.split(' ')[1].split(':')[0]) {
+  //     if (now == global.orderList[i].time.split(' ')[0] || time >= global.orderList[i].time.split(' ')[1].split(':')[0]) {
 
-        user = true
-      }
-    }
-  }
+  //       user = true
+  //     }
+  //   }
+  // }
   await ctx.render('index', {
     user
   })
