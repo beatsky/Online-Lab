@@ -79,12 +79,12 @@ const styles = {
 
 const specification = {
   time: { 
-    displayName: '标志位', 
+    displayName: 'Time/s', 
     headerStyle: styles.headerDark, 
     width: '10'
   },
   data: {
-    displayName: '峰值',
+    displayName: 'Amp/g',
     headerStyle: styles.headerDark,
     width: '10'
   }
