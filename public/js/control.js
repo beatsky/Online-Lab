@@ -28,17 +28,17 @@ socket.on('switch', function(data){
 			$('#mator').text('开')
 
 			$('#magnet').css({
-				background: 'rgb(229, 45, 39)'
-			})
-			// $('#magnet').text('开')
-
-			$('#add').css({
 				background: '#00a9f4'
 			})
+			$('#magnet').text('开')
 
-			$('#reduce').css({
-				background: '#00a9f4'
-			})
+			// $('#add').css({
+			// 	background: '#00a9f4'
+			// })
+
+			// $('#reduce').css({
+			// 	background: '#00a9f4'
+			// })
 
 			break;
 		}
@@ -46,7 +46,7 @@ socket.on('switch', function(data){
 			$('#mator').css({
 				background: 'rgb(204, 204, 204)'
 			})
-			$('#mator').text('关')
+			// $('#mator').text('关')
 
 			$('#magnet').css({
 				background: 'rgb(204, 204, 204)'
@@ -81,11 +81,12 @@ $('#mator').on('click', function(){
 		$('#mator').text('开')
 		
 		$('#reduce').css({
-			background: '#00a9f4'
+			background: 'rgb(204, 204, 204)'
 		})
 		$('#add').css({
-			background: '#00a9f4'
+			background: 'rgb(204, 204, 204)'
 		})
+		
 
 	}else{
 		socket.emit('speed', `CE00\/r\/n`);
@@ -96,10 +97,10 @@ $('#mator').on('click', function(){
 		$('#mator').text('关')
 		
 		$('#reduce').css({
-			background: 'rgb(204, 204, 204)'
+			background: '#00a9f4'
 		})
 		$('#add').css({
-			background: 'rgb(204, 204, 204)'
+			background: '#00a9f4'
 		})
 	}
 

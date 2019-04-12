@@ -49,8 +49,11 @@ router.get('/', async (ctx, next) => {
 
 
 let calcObj = function(save){
+  if(!save){
+    return
+  }
   let arr = []
-  for (var i = 0; i < save.data.length; i++) {
+  for (let i = 0; i < save.data.length; i++) {
   let obj = {data: '', time: ''}
     obj.data = save.data[i];
     obj.time = save.time[i];
@@ -92,18 +95,21 @@ const specification = {
 
 // excel 下载数据
 router.get('/excel', async (ctx, next) => {
+  let arr = calcObj(global.save)
   let report = nodeExcel.buildExport(
     [ 
       {
         name: 'Report', 
         specification: specification, 
-        data: calcObj(global.save)
+        data: arr//calcObj(global.save)
       }
     ]
   );
-    ctx.set('Content-Type', 'application/vnd.openxmlformats');
-    ctx.set("Content-Disposition", "attachment; filename=" + "Report.xlsx");
-    ctx.body = report
+  ctx.set('Content-Type', 'application/vnd.openxmlformats');
+  ctx.set("Content-Disposition", "attachment; filename=" + "Report.xlsx");
+  ctx.body = report
+  // calcObj(global.save)
+  // ctx.body = global.save
 });
 
 
