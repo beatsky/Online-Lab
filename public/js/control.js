@@ -60,6 +60,8 @@ socket.on('switch', function(data){
 			$('#reduce').css({
 				background: 'rgb(204, 204, 204)'
 			})
+			sp = 20;
+			speedNum.innerHTML = speedInner(sp);
 			break;
 		}
 	}
@@ -73,7 +75,7 @@ $('#mator').on('click', function(){
 	}
 
 	if ($('#mator').text() == '关') {
-		socket.emit('speed', `CE20\/r\/n`);
+		socket.emit('speed', `CE00\/r\/n`);
 
 		$('#mator').css({
 			background: '#00a9f4'
@@ -86,10 +88,12 @@ $('#mator').on('click', function(){
 		$('#add').css({
 			background: 'rgb(204, 204, 204)'
 		})
+		sp = 20;
+		speedNum.innerHTML = speedInner(sp);
 		
 
 	}else{
-		socket.emit('speed', `CE00\/r\/n`);
+		socket.emit('speed', `CE20\/r\/n`);
 
 		$('#mator').css({
 			background: '#e52d27'
@@ -115,24 +119,28 @@ $('#magnet').on('click', function(){
 	}
 
 	if ($('#magnet').text() == '关') {
+		socket.emit('speed', `CD0\/r\/n`)
+
 		$('#magnet').css({
 			background: '#00a9f4'
 		})
 		$('#magnet').text('开')
-		socket.emit('speed', `CD1\/r\/n`);
+		
 	}else{
+		socket.emit('speed', `CD1\/r\/n`);
+
 		$('#magnet').css({
 			background: '#e52d27'
 		})
 		$('#magnet').text('关')
-		socket.emit('speed', `CD0\/r\/n`)
+		
 	}
 })
 
 
 function addSpeed() {
 	if(sp==50 || $('#add').css('background-color') == 'rgb(204, 204, 204)'){
-	//	return
+		return
 	}
 	sp = sp + 1
   	socket.emit('speed', `CE${speedCalc(sp)}\/r\/n`);
@@ -146,7 +154,7 @@ function addSpeed() {
 
 function reduceSpeed() {
 	if(sp==20 || $('#reduce').css('background-color') == 'rgb(204, 204, 204)'){
-	//	return
+		return
 	}
 	sp = sp - 1
 	socket.emit('speed', `CE${speedCalc(sp)}\/r\/n`);
@@ -158,9 +166,7 @@ function reduceSpeed() {
 }
 
 function saveData(){
-	socket.emit('getData', '');
-
- 	setTimeout(()=>{
+	setTimeout(()=>{
  		window.open('/excel')
  	}, 300)
  }

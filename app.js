@@ -9,6 +9,7 @@ const session = require('koa-session')
 
 require('./middlewares/socket.js')
 // require('./middlewares/socket2.js')
+// require('./middlewares/socket3.js')
 
 // routes
 const index = require('./routes/index')

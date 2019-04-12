@@ -36,16 +36,11 @@ var record = {
 
 
 
-io.on('connection', function (websocket) {
-	// websocket.on('speed', function (data) {
-	// 	// console.log(data)
-	// 	command = data
-	// })
-
-	// websocket.on('getData', function (data) {
-	// 	io.emit('save', save)
-	// })
-})
+// io.on('connection', function (websocket) {
+// 	websocket.on('speed', function (data) {
+// 		command = data
+// 	})
+// })
 
 
 
@@ -58,7 +53,8 @@ server.on('connection',function (socket) {
 	// 控制电机
 	io.on('connection', function (websocket) {
 		websocket.on('speed', function (data) {
-			socket.write(data, 'utf8');
+			console.log(data)
+			socket.write(data, '');
 		})
 	});
 
@@ -67,10 +63,8 @@ server.on('connection',function (socket) {
       str = data.split('s');
       for (let i = 1; i < str.length; i++) {
       	labData.data.push(str[i]);
-      	// global.save.data.push(str[i]);
       	x++;
       	labData.time.push(x);
-      	// global.save.time.push(x);
       }
 	  
 	  if (labData.data.length > 100) {
@@ -92,6 +86,10 @@ server.on('connection',function (socket) {
 			time: []
 		};
 		x = 0;
+		// global.save = {
+		// 	data: [],
+		// 	time: []
+		// }
 		record.end = new Date().toLocaleString()
 		global.record.push(record)
 	}) 

@@ -16,12 +16,13 @@ router.get('/lab', async (ctx, next) => {
   })
 })
 
-
+// 预约申请
 router.get('/order', async (ctx, next) => {
   await ctx.render('order', {
   })
 })
 
+// 主页
 router.get('/', async (ctx, next) => {
   let user = true
   // if(ctx.session.user){
@@ -47,7 +48,7 @@ router.get('/', async (ctx, next) => {
 
 
 
-
+// excel下载相关配置
 let calcObj = function(save){
   if(!save){
     return
@@ -93,28 +94,25 @@ const specification = {
   }
 }
 
+
 // excel 下载数据
 router.get('/excel', async (ctx, next) => {
-  let arr = calcObj(global.save)
-  let report = nodeExcel.buildExport(
-    [ 
-      {
-        name: 'Report', 
-        specification: specification, 
-        data: arr//calcObj(global.save)
-      }
-    ]
-  );
-  ctx.set('Content-Type', 'application/vnd.openxmlformats');
-  ctx.set("Content-Disposition", "attachment; filename=" + "Report.xlsx");
-  ctx.body = report
-  // calcObj(global.save)
-  // ctx.body = global.save
+  if (!global.save.data.length) {
+    ctx.body = '当前暂无实验数据'
+  } else {
+    let report = nodeExcel.buildExport(
+      [ 
+        {
+          name: 'Report', 
+          specification: specification, 
+          data: calcObj(global.save)
+        }
+      ]
+    );
+    ctx.set('Content-Type', 'application/vnd.openxmlformats');
+    ctx.set("Content-Disposition", "attachment; filename=" + "Report.xlsx");
+    ctx.body = report
+  }
 });
-
-
- 
-
-
 
 module.exports = router

@@ -16,7 +16,7 @@ window.addEventListener('resize', function(){
 // 图表更改峰值
 var peak = document.getElementById('peak')
 peak.oninput = function(){
-	maxY = peak.value
+	Y = peak.value
 }
 
 socket.on('message', 
@@ -25,12 +25,7 @@ socket.on('message',
 		if(data.length <= 1){
 			return
 		}
-		if (data.time[0]<20) {
-			$('#mator').css({
-			background: '#00a9f4'
-			})
-			$('#mator').text('开')
-		}
+		
 		myChart.setOption(option = {
 			tooltip: {
 				trigger: 'axis'
