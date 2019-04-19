@@ -45,6 +45,14 @@ router.get('/', async (ctx, next) => {
 })
 
 
+router.get('/damping', async (ctx, next) => {
+  let user = true
+  await ctx.render('lightlab', {
+    user
+  })
+})
+
+
 
 
 

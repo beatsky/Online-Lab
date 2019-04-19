@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>阻尼实验室</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <style type="text/css">
+    #chart {
+      width: 100%;
+      height: 310px;
+      margin: 0 auto;
+    }
+
+    #peak {
+      border: none;
+      border-bottom: 1px solid black;
+      outline: none;
+    }
+
+    .rtmpvideo {
+      height: 330px;
+      width: 100%;
+    }
+
+    .close-button {
+      margin: 0 auto;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      border: none;
+      color: #fff;
+      background: rgb(204, 204, 204);
+      outline: none;  
+      cursor: pointer;
+    }
+
+    .close-button:focus {
+    	outline: none;
+    }
+
+    .ctrl-group {
+    	display: flex;
+    	justify-content: space-around;
+    }
+
+    #speedNum, .ctrl-group h5{
+    	line-height: 60px;
+    }
+    @media screen and (min-width: 1700px) {
+      #chart {
+        width: 100%;
+        height: 510px;
+        margin: 0 auto;
+        padding: 0;
+      }
+      .rtmpvideo {
+        height: 530px;
+        width: 100%;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">阻尼实验室</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="/users">后台管理<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/order">实验预约</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/users/login">登录<span class="sr-only">(current)</span></a>
+          </li>
+          
+        </ul>
+        <button class="btn btn-info my-2 my-sm-0" onclick="saveData()">数据下载</button>
+      </div>
+    </nav>
+
+    <% if (user) { %>
+
+    <div class="container-fluid" style="margin-top: 30px;">
+      <div class="row">
+        <div class="col-md-6 col-sm-12">
+          <div id="video" class="rtmpvideo"></div> 
+        </div>
+        <div class="col-md-6 col-sm-12"">
+          <input type="text" id="peak" placeholder="" style="width: 50px;margin-left: 10px;">
+          <div id="chart"></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 col-sm-12 ctrl-group">
+          <h5>电机</h5>
+          <button class="close-button" id="mator">关</button>
+        </div>
+        <div class="col-md-4 col-sm-12 ctrl-group">
+          <h5>电磁铁</h5>
+                <button class="close-button" id="magnet">关</button>
+        </div>
+        <div class="col-md-4 col-sm-12 ctrl-group">
+          <button class="close-button" onclick="addSpeed()" id="add">加速</button>
+          <span id="speedNum">2.0</span>
+          <button class="close-button" onclick="reduceSpeed()" id="reduce">减速</button>
+        </div>
+      </div>
+    </div>
+
+    <% } else {%>
+      <h1>未到预约时间</h1>
+    <% } %>
+
+  <script type="text/javascript" src="ckplayer/ckplayer.js"></script>
+  <script type="text/javascript">
+    var videoObject = {
+      container: '#video', //容器的ID或className
+      variable: 'player',//播放函数名称
+      autoplay:false,
+      live:true,
+      video: 'rtmp://rtmpdist-w.quklive.com/live/w1551170380026773'
+    };
+    var player = new ckplayer(videoObject);
+  </script>
+  <script src="js/socket.io.js"></script>
+  <script src="js/jquery.3.2.1.min.js"></script>
+  <script src="js/echarts.min.js"></script>
+  <script src="js/init.js"></script>
+  <script src="js/control.js"></script>
+</body>
+
+</html>
