@@ -97,7 +97,7 @@
   transform: translate3d(0px, 0, 0);
 }
 .nav-open .navbar > .container-fluid {
-  transform: translate3d(-424px, 0, 0);
+  transform: translate3d(-360px, 0, 0);
 }
 @media (max-width: 991px) {
   .nav-open .navbar > .container-fluid {
@@ -113,7 +113,7 @@ body > .navbar-collapse {
   position: fixed;
   top: 0;
   right: -10px;
-  width: 424px;
+  width: 360px;
   height: 100%;
   padding: 60px 1rem;
   background-color: #fff;
@@ -121,7 +121,7 @@ body > .navbar-collapse {
   text-align: center;
   visibility: visible;
   overflow-y: visible;
-  transform: translate3d(424px, 0, 0);
+  transform: translate3d(360px, 0, 0);
   transition: all 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1);
   z-index: 1032;
 }
@@ -216,7 +216,7 @@ body > #overlay {
 }
 @media (min-width: 992px) {
   body > #overlay {
-    right: calc(424px - 10px);
+    right: calc(360px - 10px);
   }
 }
 

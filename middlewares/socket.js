@@ -81,9 +81,9 @@ server.on('connection',function (socket) {
 	  	}
 	  }
 	  
-	  if (labData.data.length >= 100) {
-		  	labData.data.splice(0, labData.data.length-100);
-		  	labData.time.splice(0, labData.time.length-100);
+	  if (labData.data.length >= 200) {
+		  	labData.data.splice(0, labData.data.length-200);
+		  	labData.time.splice(0, labData.time.length-200);
 	  } 
 	  // 每10毫秒向前端发送一次数据
 	  if (x%10==0 && x>=10) {
