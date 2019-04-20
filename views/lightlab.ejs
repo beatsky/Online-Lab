@@ -54,6 +54,8 @@
     .ctrl-group {
     	display: flex;
     	justify-content: space-around;
+    	box-shadow: 0 1px 6px -1px rgba(0, 0, 0, 0.15);
+    	padding: 40px 0;
     }
 
     #speedNum, .ctrl-group h5{
@@ -122,22 +124,33 @@
 	          <input type="text" id="peak" placeholder="" style="width: 50px;margin-left: 10px;">
 			  <a class="pull-right" style="float: right;" href="javascript:;" onclick="saveData()">数据下载</a>
 	          <div id="chart"></div>
+	       </div>
+	    </div>
+
+	     <div class="row" style="margin-top: 30px;">
+
+	        <div class="col-md-4 col-sm-12">
+			  <div class="ctrl-group">
+		          <h5>电机</h5>
+		          <button class="close-button" id="mator">关</button>
+	          </div>
 	        </div>
-	      </div>
-	      <div class="row container-fluid" style="margin-top: 30px;">
-	        <div class="col-md-4 col-sm-12 ctrl-group">
-	          <h5>电机</h5>
-	          <button class="close-button" id="mator">关</button>
+
+	        <div class="col-md-4 col-sm-12">
+	          <div class="ctrl-group">
+		          <h5>电磁铁</h5>
+		          <button class="close-button" id="magnet">关</button>
+	          </div>
 	        </div>
-	        <div class="col-md-4 col-sm-12 ctrl-group">
-	          <h5>电磁铁</h5>
-	                <button class="close-button" id="magnet">关</button>
-	        </div>
-	        <div class="col-md-4 col-sm-12 ctrl-group">
-	          <button class="close-button" onclick="addSpeed()" id="add">加速</button>
-	          <span id="speedNum">2.0</span>
-	          <button class="close-button" onclick="reduceSpeed()" id="reduce">减速</button>
-	        </div>
+
+	        <div class="col-md-4 col-sm-12 ">
+	          <div class="ctrl-group">
+		          <button class="close-button" onclick="addSpeed()" id="add">加速</button>
+		          <span id="speedNum">2.0</span>
+		          <button class="close-button" onclick="reduceSpeed()" id="reduce">减速</button>
+	          </div>
+	    	</div>
+
 	      </div>
 	    </div>
 
