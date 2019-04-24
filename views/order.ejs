@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<title>Tables - Ready Bootstrap Dashboard</title>
-	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
-	<link rel="stylesheet" href="/assets/css/bootstrap.min.css">
-	<link rel="stylesheet" href="/login/flatpickr.min.css">
-	<link rel="stylesheet" href="/assets/css/ready.css">
-	<link rel="stylesheet" href="/assets/css/demo.css">
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
+		name='viewport' />
+		<link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="/css/flatpickr.min.css">
+	<link rel="stylesheet" href="/css/ready.css">
+	<link rel="stylesheet" href="/css/demo.css">
 </head>
+
 <body>
 	<div class="container">
 		<div class="content">
@@ -31,106 +34,84 @@
 								</div>
 
 								<div class="mt40 form-group">
-							        <label for="text">预约时间</label>
-							        <input class="flatpickr form-control" id="time" data-enable-time="true" data-enable-seconds="true">
-							        
-							    </div>
+									<label for="text">预约时间</label>
+									<input class="flatpickr form-control" id="time" data-enable-time="true" data-enable-seconds="true">
+
+								</div>
 
 								<div class="form-group">
 									<label for="disableinput">备注</label>
 									<textarea class="form-control" rows="3" id="remark" placeholder="备注"></textarea>
 								</div>
-								
+
 								<div class="card-action">
 									<button class="btn btn-success" id="order">Submit</button>
 									<button class="btn btn-danger">Cancel</button>
 								</div>
 							</div>
 						</div>
-						
+
 					</div>
 				</div>
 			</div>
-			<footer class="footer">
-				<div class="container-fluid">
-					<nav class="pull-left">
-						<ul class="nav">
-							<li class="nav-item">
-								<a class="nav-link" href="#">
-									ThemeKita
-								</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="#">
-									Help
-								</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="#">
-									Licenses
-								</a>
-							</li>
-						</ul>
-					</nav>			
-				</div>
-			</footer>
+			
 		</div>
 	</div>
 
 </body>
-<script src="/assets/js/core/jquery.3.2.1.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
 <script src="/assets/js/core/bootstrap.min.js"></script>
-<script src="/login/flatpickr.min.js"></script>
-<script src="/assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
-<script src="/assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
-<script src="/assets/js/ready.min.js"></script>
+<script src="/js/flatpickr.min.js"></script>
+<script src="/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
+<script src="/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+<script src="/js/ready.min.js"></script>
 <script>
-	$('#order').on('click', function(){
+	$('#order').on('click', function () {
 		var orderInfo = {};
 		orderInfo.name = $('#name').val();
 		orderInfo.time = $('#time').val();
 		orderInfo.live = $('#live').val();
 		orderInfo.remark = $('#remark').val();
 		$.ajax({
-	      url: '/users/order',
-	      method:'post',
-	      data: orderInfo,
-	      success: function (res) {
-	        $.notify({
-	        	icon: 'la la-bell',
-	        	title: res,
-	        	message: '预约成功',
-	        },{
-	        	type: 'success',
-	        	placement: {
-	        		from: "bottom",
-	        		align: "right"
-	        	},
-	        	time: 1000,
-	        });
-	      },
-	      error: function(err) {
-	        $.notify({
-        		title: '预约失败',
-        		message: '预约失败',
-        	},{
-        		type: 'danger',
-        		placement: {
-        			from: "bottom",
-        			align: "right"
-        		},
-        		time: 1000,
-        	});
-	      }
-	    })
+			url: '/users/order',
+			method: 'post',
+			data: orderInfo,
+			success: function (res) {
+				$.notify({
+					icon: 'la la-bell',
+					title: res,
+					message: '预约成功',
+				}, {
+					type: 'success',
+					placement: {
+						from: "bottom",
+						align: "right"
+					},
+					time: 1000,
+				});
+			},
+			error: function (err) {
+				$.notify({
+					title: '预约失败',
+					message: '预约失败',
+				}, {
+					type: 'danger',
+					placement: {
+						from: "bottom",
+						align: "right"
+					},
+					time: 1000,
+				});
+			}
+		})
 	})
-	
+
 
 	// 时间选择
 	$(".flatpickr").flatpickr({
-	    enableTime: true,
-    	dateFormat: "Y-m-d H:i",
+		enableTime: true,
+		dateFormat: "Y-m-d H:i",
 	});
-
 </script>
+
 </html>

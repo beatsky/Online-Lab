@@ -32,10 +32,10 @@ global.record = []
 
 // 处理实验数据
 function manageData(low, high) {
-	if((256*high + low)>=32768){
-		return -1*(65535-(256*high + low)+1)/32768*16
+	if ((256 * high + low) >= 32768) {
+		return -1 * (65535 - (256 * high + low) + 1) / 32768 * 16
 	}
-	return (256*high + low)/32768*16
+	return (256 * high + low) / 32768 * 16
 
 }
 
@@ -50,7 +50,7 @@ io.on('connection', function (websocket) {
 
 
 // 接受实验仪器数据，处理数据，发送给前端
-server.on('connection',function (socket) {
+server.on('connection', function (socket) {
 
 	var record = {
 		start: '',
@@ -63,35 +63,35 @@ server.on('connection',function (socket) {
 
 	// 控制电机
 	// socket.setEncoding('utf8');
-	socket.on('data',function (data) { 
+	socket.on('data', function (data) {
 
-	  if(command){
-	  	socket.write(command, '')
-		command = ''
-	  }
-	  
-	  str = data.toJSON().data
+		if (command) {
+			socket.write(command, '')
+			command = ''
+		}
 
-	  for(let i = 0;i < str.length;i++){
-	  	if(str[i]==65&&str[i+1]==81){
-	  		peakValue = manageData(str[i+2], str[i+3])
-	  		labData.data.push(peakValue)
-	  		x++
-	  		labData.time.push(x/100);
-	  	}
-	  }
-	  
-	  if (labData.data.length >= 200) {
-		  	labData.data.splice(0, labData.data.length-200);
-		  	labData.time.splice(0, labData.time.length-200);
-	  } 
-	  // 每10毫秒向前端发送一次数据
-	  if (x%10==0 && x>=10) {
-	  	io.emit('message', labData);
-	  	global.save.time = labData.time;
-	  	global.save.data = labData.data;
-	  }
-	
+		str = data.toJSON().data
+
+		for (let i = 0; i < str.length; i++) {
+			if (str[i] == 65 && str[i + 1] == 81) {
+				peakValue = manageData(str[i + 2], str[i + 3])
+				labData.data.push(peakValue)
+				x++
+				labData.time.push(x / 100);
+			}
+		}
+
+		if (labData.data.length >= 200) {
+			labData.data.splice(0, labData.data.length - 200);
+			labData.time.splice(0, labData.time.length - 200);
+		}
+		// 每10毫秒向前端发送一次数据
+		if (x % 10 == 0 && x >= 10) {
+			io.emit('message', labData);
+			global.save.time = labData.time;
+			global.save.data = labData.data;
+		}
+
 	})
 
 	// 断开链接，置空数据
@@ -109,4 +109,4 @@ server.on('connection',function (socket) {
 		// }
 		io.emit('switch', 'off')
 	})
- });
+});
