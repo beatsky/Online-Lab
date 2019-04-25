@@ -54,7 +54,6 @@ router.get('/order', async (ctx, next) => {
   		item.cur = ''
   	}
   })
-  console.log(orderList)
   await ctx.render('./user/tables', {
   	orderList
   })
@@ -70,7 +69,6 @@ router.post('/order', async (ctx, next) => {
 
 router.post('/approve', async (ctx, next) => {
   ctx.response.body = '已通过';
-  console.log(ctx.request.body)
   let num = ctx.request.body
   if (num.off) {
     global.live = "rtmp://58.200.131.2:1935/livetv/hunantv"
@@ -88,18 +86,9 @@ router.get('/record', async (ctx, next) => {
      ctx.response.redirect('/users/login');
   }
   let record = global.record
-  console.log(record)
   await ctx.render('./user/record', {
     record
   })
 })
-
-
-// 未登录重定向
-// router.get('/*', async (ctx, next) => {
-//   if (!ctx.session.user) {
-//      ctx.response.redirect('/users/login');
-//   }
-// })
 
 module.exports = router

@@ -1,20 +1,5 @@
 const router = require('koa-router')()
 var nodeExcel = require('node-excel-export');
-global.live = "rtmp://58.200.131.2:1935/livetv/hunantv"
-
-router.get('/lab', async (ctx, next) => {
-  let user
-  let live = global.live
-  if (!ctx.session.user) {
-  	user = false
-  }else{
-  	user = true
-  }
-  await ctx.render('bslab', {
-  	user,
-    live
-  })
-})
 
 // 预约申请
 router.get('/order', async (ctx, next) => {
