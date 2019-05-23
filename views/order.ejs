@@ -25,12 +25,12 @@
 							</div>
 							<div class="card-body">
 								<div class="form-group">
-									<label for="text">输入信息</label>
+									<label for="text">姓名</label>
 									<input type="text" class="form-control" id="name" placeholder="请输入姓名">
 								</div>
 								<div class="form-group">
-									<label for="text">直播流</label>
-									<input type="text" class="form-control" id="live" placeholder="请输入直播流">
+									<label for="text">教职工号</label>
+									<input type="text" class="form-control" id="number" placeholder="请输入教职工号">
 								</div>
 
 								<div class="mt40 form-group">
@@ -40,7 +40,7 @@
 								</div>
 
 								<div class="form-group">
-									<label for="disableinput">备注</label>
+									<label for="disableinput">备注（预计时长等）</label>
 									<textarea class="form-control" rows="3" id="remark" placeholder="备注"></textarea>
 								</div>
 
@@ -70,8 +70,22 @@
 		var orderInfo = {};
 		orderInfo.name = $('#name').val();
 		orderInfo.time = $('#time').val();
-		orderInfo.live = $('#live').val();
+		orderInfo.number = $('#number').val();
 		orderInfo.remark = $('#remark').val();
+		if (!Object.values(orderInfo).every(v=>v)) {
+			$.notify({
+				title: '输入信息错误',
+				message: '预约失败',
+			}, {
+				type: 'danger',
+				placement: {
+					from: "bottom",
+					align: "right"
+				},
+				time: 1000,
+			});
+			return;
+		}
 		$.ajax({
 			url: '/users/order',
 			method: 'post',
