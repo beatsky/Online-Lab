@@ -31,9 +31,16 @@ router.get('/', async (ctx, next) => {
 
 
 router.get('/damping', async (ctx, next) => {
-  let user = true
+  let user, appointer
+  if(ctx.session.user){
+    user = true
+  }
+  if(ctx.session.appointer){
+    appointer = true
+  }
   await ctx.render('lightlab', {
-    user
+    user,
+    appointer
   })
 })
 

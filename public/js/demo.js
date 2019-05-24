@@ -12,7 +12,7 @@ $('.tbcheck').on('change', 'tr' ,function(){
 			console.log(num)
 		},
 		error: function(err){
-			console.log(num)
+			console.log('error')
 		}
 	})
 })

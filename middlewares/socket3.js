@@ -74,7 +74,7 @@ server.on('connection', function (socket) {
 		str = data.toJSON().data
 		console.log(str)
 		for (let i = 0; i < str.length; i++) {
-			if (str[i] == 115 && str[i + 1] == 118) {
+			if (str[i] == 57 && str[i + 1] == 64) {  // 9@
 				peakValue = manageData(str[i + 2], str[i + 3])
 				labData.data.push(peakValue)
 				x++

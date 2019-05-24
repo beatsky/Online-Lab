@@ -18,9 +18,12 @@ router.post('/login', async (ctx, next) => {
 	if (data.username=='admin' && data.password==123456) {
 		ctx.session.user = data.username
 		ctx.response.redirect('/users')
-	}else{
-		ctx.response.body = '用户名或密码错误'
-	}
+	}else if(data.username=='shenyk' && data.password==123456){
+    ctx.session.appointer = data.username
+    ctx.response.redirect('/damping');
+	} else {
+    ctx.response.body = '用户名或密码错误'
+  }
 })
 
 
@@ -47,13 +50,6 @@ router.get('/order', async (ctx, next) => {
   if (!ctx.session.user) {
      ctx.response.redirect('/users/login');
   }
-  orderList.forEach(function(item){
-  	if (item.live==global.live) {
-  		item.cur = "checked"
-  	}else{
-  		item.cur = ''
-  	}
-  })
   await ctx.render('./user/tables', {
   	orderList
   })
@@ -71,11 +67,9 @@ router.post('/approve', async (ctx, next) => {
   ctx.response.body = '已通过';
   let num = ctx.request.body
   if (num.off) {
-    global.live = "rtmp://58.200.131.2:1935/livetv/hunantv"
-    global.limit = false
+    orderList[num.index].cur = '';
   }else{
-    global.live = orderList[num.index].live
-    global.limit = true
+    orderList[num.index].cur = 'checked';
   }
 })
 
