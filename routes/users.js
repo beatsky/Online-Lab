@@ -12,15 +12,20 @@ router.get('/login', async (ctx, next) => {
 })
 
 
+function filterUsers(userArr, name, id) {
+  return userArr.some(v => v.name == name && v.number == id && v.cur)
+}
+
+
 
 router.post('/login', async (ctx, next) => {
 	var data = await ctx.request.body
 	if (data.username=='admin' && data.password==123456) {
 		ctx.session.user = data.username
 		ctx.response.redirect('/users')
-	}else if(data.username=='shenyk' && data.password==123456){
+	}else if( filterUsers(orderList, data.username, data.password) ){
     ctx.session.appointer = data.username
-    ctx.response.redirect('/damping');
+    ctx.response.redirect('/');
 	} else {
     ctx.response.body = '用户名或密码错误'
   }
@@ -30,9 +35,11 @@ router.post('/login', async (ctx, next) => {
 //登出
 router.get('/logout', async (ctx, next) => {
   ctx.session.user = undefined
+  ctx.session.appointer = undefined
   console.log(ctx.session.user)
   ctx.response.redirect('/users/login');
 })
+
 
 // 后台管理路由
 router.get('/', async (ctx, next) => {
