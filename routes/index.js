@@ -10,20 +10,6 @@ router.get('/order', async (ctx, next) => {
 // 主页
 router.get('/', async (ctx, next) => {
   let user = true
-  // if(ctx.session.user){
-  //   user = true
-  // }else{
-  //   let now = new Date().toLocaleDateString().split('/').join('-')
-  //   let time = new Date().toTimeString().split(':')[0]
-  //   console.log(time)
-  //   for (let i = 0; i < global.orderList.length; i++) {
-      
-  //     if (now == global.orderList[i].time.split(' ')[0] || time >= global.orderList[i].time.split(' ')[1].split(':')[0]) {
-
-  //       user = true
-  //     }
-  //   }
-  // }
   await ctx.render('index', {
     user
   })
