@@ -16,16 +16,6 @@ router.get('/', async (ctx, next) => {
 })
 
 
-router.get('/damping', async (ctx, next) => {
-  let user = true
-  await ctx.render('lightlab', {
-    user
-  })
-})
-
-
-
-
 
 // excel下载相关配置
 let calcObj = function(save){
